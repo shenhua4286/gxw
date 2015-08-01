@@ -2,4 +2,4 @@ array (
   'fieldtype' => 'date',
   'format' => 'Y-m Ah:i:s',
   'defaulttype' => '0',
-)
+)   

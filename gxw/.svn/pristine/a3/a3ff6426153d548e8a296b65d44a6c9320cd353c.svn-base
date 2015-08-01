@@ -1,0 +1,211 @@
+
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>长沙工业信息化调度系统</title>
+<link rel="stylesheet" href="css/ics.css" />
+<link rel="stylesheet" href="css/swiper3.07.min.css" />
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script src="http://api.map.baidu.com/components?ak=XGnXhb5r9ofOnLy949arfNjP&v=1.0">
+<script type="text/javascript" src="js/swiper3.07.min.js"></script>
+</head>
+<body>
+	<div class="i-header">
+		<div class="w1200">
+			<div class="logo i-fl">
+				<img class="logotu" src="img/logo.png" alt="" / width="65px">
+				<div class="logoinfo i-fl w300">
+					<h1 class="hehe">全 球 视 野 / 工 业 之 都</h1>
+					<h1 class="">长沙工业和信息化项目管理系统</h1>
+				</div>
+			</div>
+			<div class="right-info">	
+				<h5><a href="">关于我们</a>  |  <a href="">帮助</a></h5>
+				<div class="tq ifr">
+					<img src="img/tq.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="navbar">	
+		<ul class="w1200">
+			<a href="">首页</a>
+			<span>|</span>
+			<a href="">数据填报</a>
+			<span>|</span>
+			<a href="">展示中心</a>
+			<span>|</span>
+			<a href="">互动平台</a>
+			<span>|</span>
+			<a href="">服务大厅</a>
+			<span>|</span>
+			<a href="">专属地带</a>
+			<span>|</span>
+			<a href="">资金申报</a>
+			<span>|</span>
+			<a href="">层级管理</a>
+		</ul>
+	</div>
+	<div class="bigbg">
+		
+	</div>
+	<div class="seach">
+		<div class="relative w1200">
+			<div class="seach-box">
+				<div class="seach-input">
+					<input class="sousuo" type="text" />
+					
+					<input class="sousuobt" type="submit" />
+					<span class="ifr">
+						<img src="img/xiala.png" alt="" />
+					</span>
+				</div>
+			</div>
+			<div class="seach-tool">
+				<ul>
+					<a class="no1" href="">
+						<p>概况</p>
+					</a>
+					<a class="no2" href="">
+						<p>产业</p>
+					</a>
+					<a class="no3" href="">
+						<p>企业</p>
+					</a>
+					<a class="no4" href="">
+						<p>征信</p>
+					</a>
+					<a class="no5" href="">
+						<p>商品</p>
+					</a>
+					<a class="no6" href="">
+						<p>人才</p>
+					</a>
+					<a class="no7" href="">
+						<p>法人库</p>
+					</a>
+					<a class="no8" href="">
+						<p>标准库</p>
+					</a>
+				</ul>
+			</div>
+			<div class="right-bar">
+				<div class="tuijian">
+					<a class="no1" href="">推荐服务</a>
+					<a class="no2" href="">推荐服务</a>
+					<a class="no3" href="">推荐服务</a>
+					<a class="no4" href="">推荐服务</a>
+					<a class="no5" href="">推荐服务</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="newsbar">
+		<div class="w1200 relative">
+			<div class="w1100 swiper-container">
+				<div class="swiper-wrapper">
+					<ul class="swiper-slide">
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+					</ul>
+
+					<ul class="swiper-slide">
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="img/news1.jpg" alt="" />
+								<h5>抓落实强参谋优服务工业战线要同频共振</h5>
+								<p>2015年3月19日，长沙市第十四届人大常委会第十九次会议闭幕大常委会第十九次会议闭幕九次会议闭幕....</p>
+							</a>
+						</li>
+					</ul>
+					
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="arrowl"></div>
+			<div class="arrowr"></div>
+		</div>
+	</div>
+	<div class="ifooter">
+		<div class="w1200">
+			<div class="ifl">主办：长沙工业和信息化委员会   技术支持：湖南蓝海科技有限公司   湘ICP备xxxxxxx号</div>
+			<div class="ifr">
+				<a href="">关于我们</a><span>|</span>
+				<a href="">使用帮助</a><span>|</span>
+				<a href="">新闻报道</a><span>|</span>
+				<a href="">网站地图</a><span>|</span>
+				<a href="">联系我们</a><span>|</span>
+				<a href="">法律声明</a>
+			</div>
+		</div>
+	</div>
+
+	<script> 
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 5000,//可选选项，自动滑动
+		pagination : '.swiper-pagination',
+		prevButton:'.arrowl',
+		nextButton:'.arrowr',
+	})
+
+
+
+
+	        // url : "http://www.weather.com.cn/adat/cityinfo/101250101.html?callback=?",
+
+	</script>
+</body>
+			    
+

@@ -1,0 +1,108 @@
+{template 'member', 'header'}
+<!--  -->
+<style>
+/*隐藏标题*/
+    .title{
+        display: none;
+    }
+</style>
+    <div class="x-content">
+        <div class="">
+        <!--通知侧边栏开始  -->
+        <div class="left-tongzhi">
+            
+        {loop subcat($catid) $v}
+                {php print_r($v);}
+        {/loop}
+
+            <div class="laba-tongzhi">
+                <img src="{CSS_PATH}gxw2/img/dalaba.png" alt="">
+                <div class="tongzhi-title">
+                    通知公告
+                </div>
+                <div class="tongzhi-title-en">
+                    notice
+                </div>
+            </div>
+            <a href="###" class="tongzhi-li on">
+                 业务通知
+            </a>
+            <a href="###" class="tongzhi-li">
+                 公告公示
+            </a>
+            <a href="###" class="tongzhi-li">
+                 信息公开年度报告
+            </a>
+        </div>
+
+        <!--通知侧边栏end  -->
+                {pc:content action="lists" catid="$catid" num="10" order="id" moreinfo='1' DESC" page="$page"}
+                
+            <div class="table-widget table-list tz-widget">
+                <!-- 通知列表头部的面包屑和搜索  开始 -->
+                    <div class="tz-mianbaoxie relative">
+                        <div class="blue-block"></div>
+                        <a href="">首页</a>
+                        >
+                        <a href="">公告公示</a>
+                        <div class="tz-paixu">按发稿时间排序</div>
+                    </div>
+                    <div class="tz-search">
+                        <img class="tz-search-bt" src="{CSS_PATH}gxw2/img/tz-search.png">
+                        <p>本栏目信息检索关键词</p>
+                        <div class="tz-search-box">
+                            <input type="text" class="tz-search-input">
+                            <input type="button" class="tz-search-sub" value="搜索">
+                        </div>
+                        
+                    </div>
+                    <!-- 通知列表头部的面包屑和搜索  end -->
+                    <div class="tz-list">
+                    {php $index=0;}
+                    {loop $data $info}
+
+                        {php $CAT = $CATEGORYS[$info[catid]];}
+                    {php $index++;}
+                        <li>
+                        <i class="li-disc"></i>  <!-- 小点 -->
+                            <a href="{$info[url]}&t={$t}&pt={$pt}&t={$t}&pt={$pt}&menu=1"><span>【{$CAT['catname']}】</span>{str_cut($info['title'], 180)}</a>
+                            <p>来源:{$info['copyfrom']}<b>{date('Y-m-d',$info['inputtime'])}</b></p>
+                        </li>
+                    {/loop}
+                    </div>
+                    <div id="pages" class="tz-pages"> {$pages}</div>
+
+
+                
+<!--                <table  cellspacing="0" cellpadding="0" class="textc">
+                    <thead>
+                        <tr>
+                            <th class="w50">序号</th>
+                            <th class="w300">信息名称</th>
+                            <th class="w150">发布时间</th>
+                        </tr>
+
+                    </thead>
+                
+                    {php $index=0;}
+                    {loop $data $info}
+                    {php $index++;}
+                    <tr>
+                        <td align="left" class="pdl10">
+                            {$index}
+                        </td>
+                        <td align="left" class="pdl10">
+                            <a href="{$info[url]}&t={$t}&pt={$pt}&t={$t}&pt={$pt}&menu=1"  title="{$info['title']}">{str_cut($info['title'], 100)}</a>
+                        </td>
+                        <td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+                    </tr>
+                    {/loop}
+                    
+                </table>
+                <div id="pages"> {$pages}</div> -->
+            </div>
+        </div>
+        </div>
+    </div>
+
+

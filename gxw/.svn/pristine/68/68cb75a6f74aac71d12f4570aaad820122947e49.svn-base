@@ -1,0 +1,37 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info">
+			
+			<div class="table-widget table-list">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<thead>	
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">信息名称</th>
+						<th class="w150">发布时间</th>
+					</tr>
+					</thead>
+
+				
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="{$info[url]}&t={$t}&pt={$pt}&t={$t}&pt={$pt}&menu=1"  title="{$info['title']}">{str_cut($info['title'], 100)}</a>
+						</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+					</tr>
+					{/loop}
+					
+				</table>
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+

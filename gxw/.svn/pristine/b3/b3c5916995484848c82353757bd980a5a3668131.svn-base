@@ -1,0 +1,34 @@
+	{loop $dates $d}
+						<tr><td colspan="3" align="center">所属年月：{$d}</td></tr>
+				{php $info=$lists[$d]}
+					{if $info}
+						<tr><td class="w150 textr">当月完成投资：</td><td class="w600 textl noborder">{$info['monthCompleteDz']}(万元)</td></tr>
+						<tr><td class="w150 textr">存在问题：</td><td class="w600 textl noborder">{$info['question']}</td></tr>
+						<tr><td class="w150 textr">形象进度：</td><td class="w600 textl noborder">{$info['progress']}</td></tr>
+						{else}
+						<tr>
+							<td colspan="3">
+								<form method="post" action="" id="myform" name="myform">
+									<input type="hidden" name="info[catid]" value="{$catid}" />
+									<input type="hidden" name="info[yearMonth]" value="{$d}" />
+									<!--项目进度  -->
+									{php $projectId=$_GET['projectId']}
+									<input type="hidden" name="info[projectId]" value="{$projectId}" />
+										<table>
+										{loop $forminfos $k $v}
+											{if $v['name']!='栏目'}
+											<tr>
+												<th class="w150 textr">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
+												<td class="w600 textl noborder">{$v['form']}{if $v['tips']}({$v['tips']}){/if}</td>
+											</tr>
+											{/if}
+										{/loop}
+										<tr>
+											<td align="center"><input name="dosubmit" type="submit" id="dosubmit" value="保存" class="button red-bt"></td></td>
+										</tr>
+									</table>
+							</form>
+							</td>
+						</tr>
+					{/if}
+			{/loop}

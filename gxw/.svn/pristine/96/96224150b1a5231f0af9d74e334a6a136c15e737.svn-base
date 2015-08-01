@@ -1,0 +1,124 @@
+<?php defined('IN_gxw') or exit('No permission resources.'); ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>长沙工业信息化调度系统</title>
+<link href="<?php echo CSS_PATH;?>/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php echo CSS_PATH;?>/gxw2/css/ics.css" />
+<link rel="stylesheet" href="<?php echo CSS_PATH;?>/gxw2/css/swiper3.07.min.css" />
+<script type="text/javascript" src="<?php echo CSS_PATH;?>/gxw2/js/jquery-1.11.2.min.js"></script>
+<script src="http://api.map.baidu.com/components?ak=XGnXhb5r9ofOnLy949arfNjP&v=1.0">
+<script type="text/javascript" src="js/swiper3.07.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_PATH;?>gxw.js"></script>
+</head>
+<body style="overflow:auto;">
+<style>
+	.i-header{
+		background: transparent;
+	}
+    .nav-active{
+           color: #02A1D0 !important;
+           font-weight: 700;
+        }
+     .x-content{
+        background: transparent;
+          min-height: 68%;
+     }
+     .login-widget {
+       background: rgba(255, 255, 255, 0.95);
+       background: #fff\9;
+       border:0;
+     }
+     .bigbg{
+        height:100%;
+        background-size: cover;
+        top:0;
+
+     }
+     .login-widget-title{
+     	color: #333;
+        font-weight: 400;
+        font-size: 20px
+     }
+	.navbar{
+		display: none;
+	}
+	.ifooter{
+		position: absolute;
+		bottom: 0;
+		left:0;
+	}
+	.tq {
+	  margin-top: 18px;
+	  margin-right: 79px;
+	}
+    .hemin{
+        font-size:19px;
+        text-indent: 20px;
+    }
+    body{
+        min-height: 849px;
+    }
+</style>
+    <div class="i-header">
+        <div class="w1200">
+            <div class="logo i-fl">
+                <img class="logotu" src="<?php echo CSS_PATH;?>/gxw2/img/logo66.gif" alt="" / width="80px">
+                <a href="index.php?m=member&c=index&a=login" class="logoinfo i-fl">
+                    <div class="hehe">长沙市工业和信息化项目库管理系统</div>
+                    <div class="hemin">—&nbsp;全 球 视 野 / 工 业 之 都</div>
+                </a>
+            </div>
+            <div class="right-info">    
+                
+                <div class="tq ifr">
+                    <img src="<?php echo CSS_PATH;?>/gxw2/img/tq.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <?php $t=$_GET['t']; if(!isset($t)){$t=4;} $pt=isset($_GET['pt']) ? $_GET['pt'] :$t;?> 
+    <?php $siteinfo = siteinfo($this->memberinfo['siteid']);?>
+    <?php $this->menu_db = pc_base::load_model('member_menu_model');?>
+    <?php $menu = $this->menu_db->select(array('display'=>1, 'parentid'=>0), '*', 8 , 'listorder');?>
+    <?php $children_menu = $this->menu_db->select(array('display'=>1, 'parentid'=>$pt), '*', 20 , 'listorder');?>
+    <?php $ids=array();$ids[]=$pt;foreach($children_menu as $v){$ids[]=$v['id'];}?>
+    
+    <?php $nowMenu;?>
+    
+    <div class="navbar">    
+        <ul class="w1200">
+                
+               <?php $n=1; if(is_array($menu)) foreach($menu AS $k => $v) { ?>
+                    <a <?php if(in_array($v['id'],$ids)) { ?>class="nav-active" <?php } ?> href="index.php?m=<?php echo $v['m'];?>&c=<?php echo $v['c'];?>&a=<?php echo $v['a'];?>&<?php echo $v['data'];?>&t=<?php echo $v['id'];?>" >
+                        <?php echo L($v['name'], '', 'member_menu');?>
+                    </a>
+                    <span>|</span>
+              <?php $n++;}unset($n); ?>
+            
+            <!-- <a href="">数据填报</a>
+            <span>|</span>
+            <a href="">展示中心</a>
+            <span>|</span>
+            <a href="">互动平台</a>
+            <span>|</span>
+            <a href="">服务大厅</a>
+            <span>|</span>
+            <a href="">专属地带</a>
+            <span>|</span>
+            <a href="">资金申报</a>
+            <span>|</span>
+            <a href="">层级管理</a>  -->
+        </ul>
+    </div>
+
+
+
+
+
+<div class="bigbg">
+        
+    </div>

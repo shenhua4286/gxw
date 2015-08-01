@@ -1,0 +1,105 @@
+{template 'member', 'header'}
+
+<script>
+
+    $(function(){
+
+                $(".colselect span").text("全部");
+
+                $("#searchbtn").click(function () {
+                    var pro_type=$(".colselect span").text();
+                    var checkstatu=$(".shenhestatu").val();
+
+                    window.location="index.php?m=member&c=content&a=published&catid=9&t=1&pro_type="+pro_type+"&checkstatu="+checkstatu;
+
+
+
+                });
+
+
+
+
+
+    })
+</script>
+	<div class="x-content">
+		<div class="main-info">
+		
+		
+			<div class="tool-bar">
+				
+			</div>
+			<div class="edit">
+				<div class="view-info">企业项目管理</div>
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}" class="red-bt xfr">+新增信息</a>
+				<div class="edit-bt"></div>
+			</div>
+
+            <div style="height: 30px; width: 100%; margin: 5px 0; line-height: 30px;">
+
+
+                <div style="float: left; display: inline-block; height: 30px; line-height: 30px;">
+                    {menu_linkage(3381,'L_3381')}
+                </div>
+                <span style="line-height: 30px;">项目状态</span>
+                <select class="shenhestatu">
+                    <option value="-1">全部</option>
+                    <option  value="1">待审中</option>
+                    <option value="99">审核通过</option>
+                    <option value="0">退稿</option>
+                </select>
+
+                <input type="button" value="查找" id="searchbtn">
+
+            </div>
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">项目名称</th>
+						<th class="w150">项目类型</th>
+						<th class="w150">项目开始时间</th>
+						<th class="w150">项目进度</th>
+						<th class="w150">项目状态</th>
+						<th class="w150">操作</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid=9&isShow=1&id={$info[id]}" target="_blank" title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td align="center"><a href="{if strpos($CATEGORYS[$info['catid']][url],'http://')===false}{$siteurl}{/if}{$CATEGORYS[$info['catid']][url]}" target="_blank">{$info[name]}</a></td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+						<td></td> 
+						<td>
+							{if $info[status]==0}<font color="red">{L('reject_content')}</font>{elseif $info[status]!='99'}<font color="#1D94C7">待审中</font>{/if}
+						</td>
+						<td align="center">
+							{if $info[status]==100}
+								<font color="green">{L('pass')}</font>
+							{elseif !$info[flag]}
+								<a href="index.php?m=member&c=content&a=edit&catid=9&id={$info[id]}"><font color="red">{L('edit')}</font></a>
+								<a href="index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}">删除</a>
+							{else}
+								<a href="index.php?m=member&c=content&a=edit&catid=9&id={$info[id]}"><font color="red">{L('edit')}</font></a>
+								<a href="index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}">删除</a>
+							{/if}
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+
+{template 'member', 'footer'}

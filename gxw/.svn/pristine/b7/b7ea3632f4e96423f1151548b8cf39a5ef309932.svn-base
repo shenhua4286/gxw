@@ -1,0 +1,85 @@
+{template 'member', 'header'}
+	
+	
+	<script>
+	 function confirm_delete(id){
+    	 if(confirm('确认删除吗？')) $('#myform').submit();
+    	
+    }
+	</script>
+	<form name="myform" id="myform" method="post">
+		
+	</form>
+	
+    
+    
+	<div class="x-content">
+		<div class="main-info">
+		
+		   <div class="blue-tool">
+				<div class="view-info">
+					{if $nowMenu}
+							{L($nowMenu['name'], '', 'member_menu')}
+						{/if}
+				</div>
+				<div class="edit-bt"></div>
+		  	<div class="blue-tool">
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}&curmb=add&menu=1&t={$_GET['t']}&pt={$_GET['pt']}" class="blue-bt red-bt xfr">+添加产品</a>
+
+
+
+
+
+
+
+			</div>
+			
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+					
+						<th class="w50">序号</th>
+						<th class="w300">产品名称</th>
+						<th class="w150">产品型号</th>
+						<th class="w150">产品说明</th>
+						<th class="w150">创建时间</th>
+						<th class="w150">状&nbsp;&nbsp;态</th>
+						<th class="w150">操&nbsp;&nbsp;作</th>
+						
+					</tr>
+					{php $index=0}
+					{loop $datas $info}
+                   	{php $index++;}
+					<tr>
+						
+						<td align="center" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$catid}&isShow=1&id={$info[id]}&t={$t}&pt={$pt}&menu=1" title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td align="center">{$info['xingh']}</td>
+						<td align="center">{$info['yongt']}</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+						<td align="center">
+							{if $info[status]!=99}
+								等待审核
+							{else}
+								已通过审核
+							{/if}
+						</td>
+						<td align="center">
+								<a title="编辑" href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}&t={$t}&pt={$pt}&menu=1"><font class="edit-bt" color="red">&nbsp;&nbsp;</font></a>
+								<a title="删除" href="javascript:;" onclick="myform.action='index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}';return confirm_delete();"><font class="del-bt">&nbsp;&nbsp;</font></a>
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+</div>

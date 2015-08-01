@@ -1,0 +1,89 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info">
+		<div class="edit">
+			<div class="view-info">企业信息</div>
+		</div>
+		
+		
+		
+		
+		
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w350">企业信息</th>
+						<th class="w150">分值</th>
+						<th class="w150">均值</th>
+						<th class="w250">推荐操作</th>
+					</tr>
+					<tr>
+						<td>企业信息完整度</td>
+						<td>{$memberpercent}%</td>
+						<td>90%</td>
+						<td><a href="index.php?m=member&c=index&a=account_manage_info&t=5">去完善</a></td>
+					</tr>
+					<tr style="display:none;">
+						<td>账号安全度</td>
+						<td>60%</td>
+						<td>70%</td>
+						<td><a href="">去提高</a></td>
+					</tr>
+
+				</table>
+
+
+
+			</div>
+			<div class="edit">
+				<div class="view-info">行业信息</div>
+			</div>
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0"  class="textc table60 xfl noborder">
+					
+					<th colspan="3">
+						<p class="fl10">行业信息</p><a href="index.php?m=member&c=content&a=published&catid=12&t=16&pt=8"><span class="fr10">更多>></span></a>
+					</th>
+
+					{pc:content action="lists" catid="12" order="id DESC" num="5"} 
+					
+		              {loop $data $key $val}
+					                <tr>
+					                 <td class="w500 pdl10" align="left"><a href={$val['url']}&curmb=view&t=16&pt=8>{$val['title']}</a> </td>
+					                 <td class="w150" style="  border-right: 1px solid #ccc;"> {date('Y-m-d',$val['updatetime'])}</td>
+					             </tr>
+		                {/loop}
+		               {/pc}
+				</table>
+			</div>
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0"  class="textc noborder table38 xfr">
+
+
+					<th colspan="2" class="textl">系统运行情况</th>
+					<tr>
+						<td class="w50 textr2 colorhh bold">{count($shenhesumnum)}</td>
+						<td class="w300 textl5">家企业注册入驻本系统</td>
+					</tr>
+					<tr>
+						<td class="w50 textr2 colorhh bold">{count($shenhenum)}</td>
+						<td class="w300 textl5">家企业完成了企业实名认证</td>
+					</tr>
+					<tr>
+						<td class="w50 textr2 colorhh bold">234</td>
+						<td class="w300 textl5">家企业每周登录4次</td>
+					</tr>
+					<tr>
+						<td class="w50 textr2 colorhh bold">352</td>
+						<td class="w300 textl5">家企业通过平台申请到了扶持资金</td>
+					</tr>
+					<tr>
+						<td class="w50 textr2 colorhh bold">23</td>
+						<td class="w300 textl5">家企业得到了省级领导的关注</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</div>
+{template 'member', 'footer'}

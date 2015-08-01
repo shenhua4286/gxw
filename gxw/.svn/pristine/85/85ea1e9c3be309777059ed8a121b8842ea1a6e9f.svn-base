@@ -1,0 +1,135 @@
+{template 'member', 'header'}
+
+<style>
+	.w100{
+		background: #fff !important;
+		text-indent: 20px;
+		color: #767676;
+	}
+</style>
+
+<div class="x-content">
+
+	<div class="main-info">
+		<form method="post" action="" id="myform" name="myform">
+			<input type="hidden" name="type" value="basic">
+			
+			<div>
+				<div class="info">
+					<div class="home-title">
+					<!-- 企业logo -->
+						<img  src="{IMG_PATH}sanyilogo.jpg" alt="" class="home-logo" height="121px">
+						<h4>三一重工股份有限公司<span class="renz">(已认证)</span></h4>
+					</div>
+					<div class="home-jieshao">
+						三一重工股份有限公司由三一集团创建于1994年，通过打破国人传统的“技术恐惧症”坚持自主创新迅速崛起。2003年7月3日，三一重工在A股上市（股票代码：600031）；2011年7月，三一重工以215.84亿美元的市值荣登英国《金融时报》全球市值500强，是迄今唯一上榜的中国机械企业；2012年1月，三一重工收购“世界混凝土第一品牌”德国普茨迈斯特（Putzmeister），一举改变全球行业竞争格局。
+三一重工的母公司三一集团于1989年在湖南涟源正式创立，公司名称源于创业初期提出的“创建一流企业，造就一流人才，做出一流贡献”的企业愿景。多年来，三一以“品质改变世界”为使命，致力于为中华民族贡献一个世界级品牌
+					</div>
+					<div class="jieshao-row">
+						<li>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+						</li>
+						<li>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+						</li>
+						<li>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+							<!-- 公司网址需要特别提取 href为class样式添加到a标签处 -->
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont href">www.sany.com</span>
+							</div>
+						</li>
+						<li>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+							<div class="jieshao-li">
+								<span class="js-title">公司信息</span>
+								<span class="js-cont">三一重工股份有限公司</span>
+							</div>
+						</li>
+					</div>
+					<div class="home-cont-li">
+						<div class="home-cont-title">
+							<span>1</span>
+							<div class="home-cont-h5">
+								项目信息
+							</div>
+						</div>
+						<!-- loop项目信息 -->
+						<!-- 项目标题 -->
+						<div class="home-xiangmu-title">
+							项目(1)三一重工自主研制的66米臂架泵车成功下线
+						</div>
+						<!-- 项目详情 -->
+						<div class="home-xiangmu-cont">
+							三一重工微泡沥青水泥砂浆车亮相京津高铁，结束了中国高铁施工中沥青砂浆灌注使用外国设备的历史，打破了德国博格公司独家拥有该项技术的格局。
+三一重工自主研制的66米臂架泵车成功下线，刷新世界纪录，标志着中国混凝土泵送技术由世界的跟随者成为领跑者。
+亚洲最大吨位全液压旋挖钻机在北京三一重机下线。
+总建筑面积10.45万㎡，建设年产1０万吨轧辊生产线和年产50万吨特种合金钢生产线。主要新建和改造炼钢电弧炉、钢包精炼炉、热处
+						</div>
+						<!-- 下面为重复展示 实际loop中去掉下面的项目 -->
+						<div class="home-xiangmu-title">
+							项目(1)三一重工自主研制的66米臂架泵车成功下线
+						</div>
+						<!-- 项目详情 -->
+						<div class="home-xiangmu-cont">
+							三一重工微泡沥青水泥砂浆车亮相京津高铁，结束了中国高铁施工中沥青砂浆灌注使用外国设备的历史，打破了德国博格公司独家拥有该项技术的格局。
+三一重工自主研制的66米臂架泵车成功下线，刷新世界纪录，标志着中国混凝土泵送技术由世界的跟随者成为领跑者。
+亚洲最大吨位全液压旋挖钻机在北京三一重机下线。
+总建筑面积10.45万㎡，建设年产1０万吨轧辊生产线和年产50万吨特种合金钢生产线。主要新建和改造炼钢电弧炉、钢包精炼炉、热处
+						</div>
+						<!-- 重复展示结束 -->
+						<!-- loop项目信息 end-->
+					</div>
+					<!-- 产品图片开始 -->
+					<div class="home-product-img">
+						<h5>产品图片</h5>
+						<li class="hp-li">
+							<img src="{IMG_PATH}p1.png" alt="">
+							<p>泵车</p>
+						</li>
+						<li class="hp-li">
+							<img src="{IMG_PATH}p2.png" alt="">
+							<p>泵车</p>
+						</li>
+						<li class="hp-li">
+							<img src="{IMG_PATH}p3.png" alt="">
+							<p>泵车</p>
+						</li>
+						<li class="hp-li">
+							<img src="{IMG_PATH}p1.png" alt="">
+							<p>泵车</p>
+						</li>
+
+					</div>
+					
+
+
+
+
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

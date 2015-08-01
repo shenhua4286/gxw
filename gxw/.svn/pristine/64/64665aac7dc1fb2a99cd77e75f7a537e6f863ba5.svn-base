@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>长沙市工业信息化项目调度系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}cookie.js"></script>
+    <script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+    <script type="text/javascript" src="{JS_PATH}dialog.js"></script>
+    <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+    <script language="JavaScript">
+        <!--
+        // $(function(){
+        //     $.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+        //     $("#username").formValidator({onshow:"{L('input').L('username')}",onfocus:"{L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('username').L('format_incorrect')}"});
+        //     $("#password").formValidator({onshow:"{L('input').L('password')}",onfocus:"{L('password').L('between_6_to_20')}"}).inputValidator({min:6,max:20,onerror:"{L('password').L('between_6_to_20')}"});
+
+        // });
+        //-->
+    </script>
+</head>
+<body>
+<div class="x-header">
+    <h1 class="z-title white">长沙市工业和信息化项目调度系统</h1>
+    <div class="login-nav">
+        <li><a href="{APP_PATH}">首页</a><span>|</span></li>
+        <li><a href="{APP_PATH}index.php?m=member&c=index&a=register">注册</a><span>|</span></li>
+		<li><a href="index.php?m=admin&c=index&a=loginr">管理登录</a></li>
+    </div>
+</div>
+
+<div class="x-content" style="background:#fff;">
+
+    <div class="login-info">
+        <img src="{CSS_PATH}/gxw/img/login-img.png">
+    </div>
+    <div class="login-widget">
+        <div class="login-widget-title">企业登录</div>
+        <form method="post" action="" onsubmit="save_username();" id="myform" name="myform">
+            <input type="hidden" name="forward" id="forward" value="{$forward}">
+
+            <div class="login-input"><label>{L('username')}：</label>
+                <input type="text" id="username" name="username" size="22" class="h38 w200"></div>
+
+            <div class="login-input"><label>{L('password')}：</label>
+                <input type="password" id="password" name="password" size="22" class="h38 w200">
+            </div>
+            <div class="login-input"><label>{L('checkcode')}：</label>
+                <input type="text" id="code" name="code" size="22" class="h38 w200">
+            	<div class="yzm-tu">{form::checkcode('code_img', '4', '14', 120, 26)}<div class="gh-yzm">单击图片更换验证码</div></div>
+            </div>
+                <div class="login-input">
+                     <input type="submit" name="dosubmit" id="dosubmit" value="{L('login')}" class="submit-bt"></div>
+        </form>
+
+
+
+
+        <div class="zhucewj"><a href="index.php?m=member&c=index&a=register" class="zhuce b-hover">注册账户</a>
+        	<!-- <a href="" class="wangji b-hover">忘记密码</a>  -->
+        </div>
+    </div>
+</div>
+<div class="x-footer">
+    <div class="footer-info">长沙市工业和信息化项目调度系统</div>
+    <div class="footer-info">长沙经济和信息化委员会</div>
+</div>
+
+
+</body>
+</html>
+

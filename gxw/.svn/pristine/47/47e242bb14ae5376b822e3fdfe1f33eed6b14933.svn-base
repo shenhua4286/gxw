@@ -1,0 +1,76 @@
+{template 'mheader'}
+<link href="{DT_PATH}css/dspt/layout.css" rel="stylesheet"
+	type="text/css" />
+<link href="{DT_PATH}css/dspt/master.css" rel="stylesheet"
+	type="text/css" />
+<link href="{DT_PATH}css/dspt/global.css" rel="stylesheet"
+	type="text/css" />
+<link href="{DT_PATH}css/dspt/company-detail.css" rel="stylesheet"
+	type="text/css" />
+
+
+
+
+<div id="container">
+<div class="main">
+<div class="content" style="margin-top: 0px; float: none;">
+<div class="site">
+  	<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; </div>
+  </div>
+<div class="companyBar clearfix mt20">
+<div class="company-left">
+<dl class="comInfo">
+	<a href="{$COM['linkurl']}">
+		<dt><img onerror="onImgErrorLoad(this)" src="{$COM['thumb']}"
+			alt="{$COM['company']}" title="{$COM['company']}"></dt>
+		<dd>{$COM['company']}</dd>
+	</a>
+</dl>
+<div class="nav-left">
+<ul>
+	<li><a href="{$COM['linkurl']}" class="hover">企业首页</a></li>
+	{loop $MENU $k $v}
+		{if $v[name]=='商城'}
+			<li><a href="{$v[linkurl]}">知名产品</a></li>
+		{else}
+			<li><a href="{$v[linkurl]}">{$v[name]}</a></li>
+		{/if}
+	{/loop}
+</ul>
+</div>
+<div class="box">
+<div class="titleB">
+<h1>联系方式</h1>
+</div>
+<ul>
+	<li>公司电话：{$COM['telephone']}</li>
+	<li>公司传真：{$COM['fax']}</li>
+	<li>Email：{$COM['email']}</li>
+</ul>
+</div>
+</div>
+{template 'diy_mall'}
+		<div class="company-right">
+			{if $file=='homepage'}
+				{template 'main_'.$main_file[1], $template}
+				{template 'main_'.$main_file[7], $template}
+				
+				{else}
+				{template 'diy_'.$file,$template}
+			{/if}
+			
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+{template 'footer'} 
+<script>
+//高亮
+jQuery(function(){
+	for(var i=1;i<=9;i++){
+		document.getElementById('menu_'+i).className="";
+	}
+	document.getElementById('menu_3').className="on";
+});
+</script>

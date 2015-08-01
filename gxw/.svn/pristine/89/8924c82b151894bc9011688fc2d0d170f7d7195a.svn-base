@@ -1,0 +1,41 @@
+<?php defined('IN_gxw') or exit('No permission resources.'); ?><?php include template("member","header"); ?>
+  
+	<div class="x-content">
+	<!--startprint1-->
+		<div class="main-info">
+		<div class="crumbs">
+		        <div class="shortcut cu-span">
+		    </div>
+			<div class="tool-bar" style="font-size:20px;font-weight:700;text-align:center;color:#333;margin-bottom:10px;">
+				<?php echo $title;?>
+			</div>
+          
+			<div class="table-widget wenz" id="dy">
+			<div class="times"><?php echo $inputtime;?></div>
+			<?php echo $content;?>
+			<input id="btnPrint" type="button" value="打印" onclick="javascript:preview(1);" />  
+			</div>
+			
+		</div>
+		<!--endprint1-->
+	</div>
+	</div>
+	
+	<script>  
+	function preview(oper)         
+	{  
+	if (oper < 10)  
+	{  
+	bdhtml=window.document.body.innerHTML;//获取当前页的html代码  
+	sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域  
+	eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域  
+	prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html  
+	prnhtmlprnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html  
+	window.document.body.innerHTML=prnhtml;  
+	window.print();  
+	window.document.body.innerHTML=bdhtml;  
+	} else {  
+	window.print();  
+	}  
+	}  
+	</script>  

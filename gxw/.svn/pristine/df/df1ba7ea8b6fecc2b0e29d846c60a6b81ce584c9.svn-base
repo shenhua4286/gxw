@@ -1,0 +1,35 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info" style="margin:0 0 10px 0;">
+		
+			<div class="blue-tool" style="width:950px;"><a class="blue-bt red-bt xfr" href="index.php?m=member&c=content&a=publish&catid={$catid}&t={$t}&pt={$pt}&menu=1" class="red-bt xfr">+我要反馈</a></div>
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc" style="margin-left:30px;">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">反馈标题</th>
+						<th class="w150">反馈时间</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}&t={$t}&pt={$pt}&menu=1" title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td align="center">{date('Y-m-d H:i:s',$info['inputtime'])}</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+

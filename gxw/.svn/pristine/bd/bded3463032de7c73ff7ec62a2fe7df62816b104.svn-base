@@ -1,0 +1,159 @@
+<?php defined('IN_gxw') or exit('No permission resources.'); ?><?php include template('member', 'header'); ?>
+
+<style>
+	.w100{
+		background: #fff !important;
+		text-indent: 20px;
+		color: #767676;
+	}
+</style>
+
+<div class="x-content">
+
+	<div class="main-info">
+		<form method="post" action="" id="myform" name="myform">
+			<input type="hidden" name="type" value="basic">
+			
+			<div>
+				<div class="info">
+
+					<div class="table-widget padding10">
+						<div class="qiye-bg">
+							<img src="<?php echo IMG_PATH;?>qiye-bg.jpg" alt="" width="922px">
+							<div class="qy-logo">
+								<img src="<?php echo $info['basic_logo'];?>" alt="">
+							</div>
+							<div class="qy-xuanyan">
+								<?php echo $memberinfo['nickname'];?>
+							</div>
+
+						</div>
+						<table cellspacing="0" cellpadding="0" align="center">
+							<tbody>
+							<tr>
+								<td colspan="2" class="th-head" align="left"><b>基本资料</b></td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									企业简介:
+								</th>
+								<td class="w600 textl noborder">
+									<?php echo $info["basic_com_intruduce"];?>
+								</td>
+							</tr>
+							<tr>
+								<?php $where="thumbs!='' and username='".$memberinfo['username']."'"?>
+								<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=528faf1d5df07417b93cf505f1b6b113&action=lists&catid=10&where=%24where&order=id+DESC&num=3\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'10','where'=>$where,'order'=>'id DESC','limit'=>'3',));}?>
+								<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+								<th class="w100 textl">
+									主营产品:
+								</th>
+								<td class="w600 textl noborder">
+									<?php $n=1;if(is_array($data)) foreach($data AS $val) { ?>
+									<a href="<?php echo $val['url'];?>"><img src="<?php echo $val['thumbs'];?>" alt=""></a>
+									<?php $n++;}unset($n); ?>
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									认证情况:
+								</th>
+								<td class="w600 textl noborder">
+									<?php echo L('status'.$memberinfo['status'], '', 'mydiy');?>
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									联系电话:
+								</th>
+								<td class="w600 textl noborder">
+									<?php echo $info["basic_mobile"];?>
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									单位网址:
+								</th>
+								<td class="w600 textl noborder">
+									<a href="<?php echo $info['basic_url'];?>" target="_blank"><?php echo $info["basic_url"];?></a>
+								</td>
+							</tr>
+						</tbody>
+
+						</table>
+<!--  
+						<table cellspacing="0" cellpadding="0" align="center">
+							<tbody>
+							<tr>
+								<td colspan="2" class="th-head" align="left"><b>好友</b></td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									好友数量:
+								</th>
+								<td class="w600 textl noborder">
+									125
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									关注的好友:
+								</th>
+								<td class="w600 textl noborder">
+									<a href="">中联重科</a>
+									<a href="">广汽菲亚特</a>
+									<a href="">远大集团</a>
+									<a href="">长沙上海大众</a>
+									<a href="">星通科技</a>
+									<a href="">山河智能</a>
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									好友数量:
+								</th>
+								<td class="w600 textl noborder">
+									125
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									加入群组数量:
+								</th>
+								<td class="w600 textl noborder">
+									12
+								</td>
+							</tr>
+						</tbody>
+
+						<table cellspacing="0" cellpadding="0" align="center">
+							<tbody>
+							<tr>
+								<td colspan="2" class="th-head" align="left"><b>账号</b></td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									账号名:
+								</th>
+								<td class="w600 textl noborder">
+									h-1564631341
+								</td>
+							</tr>
+							<tr>
+								<th class="w100 textl">
+									账号完整度:
+								</th>
+								<td class="w600 textl noborder">
+									95%
+								</td>
+							</tr>
+						</tbody>
+						</table>
+-->
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

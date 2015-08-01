@@ -1,0 +1,116 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>长沙市工业信息化项目调度系统</title>
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+</head>
+<!--项目进度  -->
+	{php $projectId=$_GET['projectId']}
+	<script>
+		function load(obj){
+			var endDate=$(".yearMonth").eq(0).text();
+			var url="index.php?m=member&c=content&a=publish&catid=13&ajax=1&projectId={$projectId}&proDate={$proDate}&endDate="+endDate
+			var data="";	
+			$(obj).val("加载中...")
+			$.get(url,data,function(data){
+				$(obj).val("加载更多")
+					if($.trim(data) != ""){
+						$("#data_table").prepend(data);
+					}else{
+						alert('没有更多的数据了');
+					}
+				});
+		}
+	</script>
+				<table>
+				<tr style="height:40px;">
+					<td align="center" colspan="3" style="background:#efefef;  border: 2px dashed #ccc;">
+						<input  type="button" onclick="load(this)" value="点击加载更多" style="background:#efefef;color:#666;font-size:15px;"/>
+					</td>
+				</tr>
+				<tr style="height:5px;"><td></td></tr>
+				</table>	
+				
+				<style>
+				body{
+					background:#fff;
+				}
+				th{
+					padding:24px 0;
+				}
+				td input{
+					  padding: 5px;
+				}
+				.button{
+					margin-top:20px;
+				}
+				textarea{
+					height:80px !important;
+				}
+				</style>
+		<table id="data_table">
+		
+			{loop $dates $d}
+						<tr>
+							<td style="font-size:18px;border:1px solid #aaa;border-right:0px;width:95px;text-align:center;" >所属年月:</br><span class="yearMonth">{$d}</span>
+							</td>
+							<td style="border:1px solid #aaa">
+								<table>
+									{php $info=$lists[$d]}
+						{if $info}
+						<tr><td class="w150">当月完成投资：</td><td class="w600" >{$info['monthCompleteDz']}(万元)</td></tr>
+						<tr><td class="w150">存在问题：</td><td class="w600 noborder">{$info['question']}</td></tr>
+						<tr><td class="w150">形象进度：</td><td class="w600 noborder">{$info['progress']}</td></tr>
+						{else}
+								<form method="post" action="" id="myform" name="myform">
+									<input type="hidden" name="info[catid]" value="{$catid}" />
+									<input type="hidden" name="info[yearMonth]" value="{$d}" />
+									<input type="hidden" name="info[projectId]" value="{$projectId}" />
+										{loop $forminfos $k $v}
+											{if $v['name']!='栏目'}
+											<tr>
+												<th class="w150 textr">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
+												<td class="w600 textl" height="38px">{$v['form']}{if $v['tips']}({$v['tips']}){/if}</td>
+											</tr>
+											{/if}
+										{/loop}
+										<tr>
+											<td align="center" colspan="2"><input name="dosubmit" type="submit" id="dosubmit" value="保存" class="button red-bt"></td></td>
+										</tr>
+								</form>
+						{/if}
+								</table>
+							</td>
+						</tr>
+						<tr style="height:35px;"><td></td></tr>
+			{/loop}
+		</table>
+		
+<script type="text/javascript">
+			var isSubmit=false;
+            $(function() {
+                $.formValidator.initConfig({
+                    formid: "myform",
+                    autotip: true,
+                    onerror: function(msg,obj){
+                    	alert(msg);
+                    },onsuccess:function(){
+                    	if(!isSubmit){
+                    		isSubmit=true;
+                    		return true;
+                    	}else{
+                    		//console.log("重复提交");
+                    	}
+                    	return false;
+                    }
+                });
+                {$formValidator}
+            });
+            </script>

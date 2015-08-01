@@ -1,0 +1,35 @@
+{template 'member', 'header'}
+<div class="x-content">
+
+
+	<div class="main-info">
+			<div class="blue-tool">
+				<a href="index.php?m=message&c=index&a=send&t={$_GET['t']}&pt={$_GET['pt']}&menu=1" class="blue-bt red-bt xfr">+发送消息</a>
+			</div>
+			
+			<div class="table-widget">
+				<table cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">标题</th>
+						<th class="w50">发送时间</th>
+					</tr>
+					{php $index=0}
+				 {loop $infos $info} {php $index++}
+					<tr>
+						<td align="center">{$index}</td>
+						<td align="left" class="pdl10"><a
+							href="{APP_PATH}index.php?m=message&c=index&a=read_only&messageid={$info['messageid']}&t={$t}&pt={$pt}&menu=1">
+							{if $info['status']==1}<font class="unread"><b>{$info['subject']}</b></font>{else}{$info['subject']}{/if}
+						</a></td>
+						<td align="center">{date('Y-m-d h:m:s',$info['message_time'])}</td>
+					</tr>
+					{/loop}
+
+				</table>
+
+				<div id="pages">{$pages}</div>
+			</div>
+	</div>
+</div>
+

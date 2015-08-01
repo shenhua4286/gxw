@@ -1,0 +1,15 @@
+{template "member","header"}
+	<div class="x-content">
+		<div class="main-info">
+		 <?php } echo L('current_position')?><span id="current_pos"></span></div>
+			<div class="tool-bar" style="font-size:20px;font-weight:700;text-align:center;color:#333;margin-bottom:10px;">
+					
+				{$infos['subject']}  
+			</div>
+			<div class="table-widget wenz" style="width:890px;">
+			{nl2br($infos['content'])}
+			</div>
+		</div>
+	</div>
+
+{template "member","footer"}

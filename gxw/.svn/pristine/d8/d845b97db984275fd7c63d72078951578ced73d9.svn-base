@@ -1,0 +1,76 @@
+{template 'member', 'header-bf'}
+<style>
+	.login-widget{
+		float:'static'
+	}
+</style>
+    <!-- <div class="login-info" style="margin:0 auto">
+        <img src="{CSS_PATH}/gxw/img/login-img.png">
+    </div>  -->
+
+    <div class="denglu-bg">
+        <div class="login-widget" style="  margin: 0 0 0 191px;">
+            <div class="login-widget-title">欢迎登录</div>
+            <form method="post" action="" onsubmit="save_username();" id="myform" name="myform">
+                <input type="hidden" name="forward" id="forward" value="{$forward}">
+
+                <div class="login-input"><label>{L('username')}：</label>
+                    <input type="text" id="username" name="username" size="22" class="h38 w200"></div>
+
+                <div class="login-input"><label>密&nbsp&nbsp&nbsp码：</label>
+                    <input type="password" id="password" name="password" size="22" class="h38 w200">
+                </div>
+                <div class="login-input"><label>{L('checkcode')}：</label>
+                    <input type="text" id="code" name="code" size="22" class="h38 w200" style="width:73px;">
+                    <div class="yzm-tu">{form::checkcode('code_img', '4', '14', 120, 26)}<div class="gh-yzm">单击图片更换验证码</div></div>
+                </div>
+                    <div class="login-input">
+                         <input type="submit" name="dosubmit" id="dosubmit" value="{L('login')}" class="submit-bt"></div>
+            </form>
+
+            <div class="zhucewj"><a href="index.php?m=member&c=index&a=register" class="zhuce b-hover">注册</a>
+                <!-- <a href="" class="wangji b-hover">忘记密码</a>  -->
+            </div>
+        </div>
+    </div>
+
+<!-- <div class="zhanshi">
+    <div class="w1200">
+        <div class="zs-li">
+            <img src="{IMG_PATH}denglu/xiangmu.png" alt="">
+           <div class="zs-info">
+                <h4>决策的重要依据</h4>
+                
+                <p>真实的数据填报是本系统顺利运行的基础，也是长沙工业决策的重要依据，您也可以从这里获得指导企业生产经营的海量信息。感谢您的支持！</p>
+            </div>
+        </div>
+        <div class="zs-li">
+            <img src="{IMG_PATH}denglu/xxh.png" alt="">
+            <div class="zs-info">
+                <h4>便捷的沟通渠道</h4>
+                <p>长沙工业人自己的交流平台，您可以在这里与行业部门及上下游企业自由交流，发表您的看法。</p>
+            </div>
+        </div>
+        <div class="zs-li">
+            <img src="{IMG_PATH}denglu/zixun.png" alt="">
+            <div class="zs-info">
+                <h4>权威的行业资讯</h4>
+                <p>为您提供行业最新资讯以及行业数据,包括行业前景预测,行业分析报告,商机信息。</p>
+            </div>
+        </div>
+    </div>
+</div>  -->
+<script>
+   
+
+    var alertDiv = '<div class="alert-box"><div class="alert"><h3>温馨提示<div class="gbi"></div></h3><div class="alert-info"> <img class="alert-img" src="{CSS_PATH}gxw2/img/mail.png" alt=""><p></p></div><div class="make-sure"><div class="sure">我知道了</div></div></div></div>'
+
+
+
+
+    //alertInfo("长沙市工业和信息化项目库管理系统新版本正式上线试运行，原有账户名不变，密码统一变更为111111，请完善和核对现有企业和项目信息，及时更改密码,欢迎加入QQ群：260226212与我们一起交流","{CSS_PATH}gxw2/img/mail.png");
+
+     
+</script>  
+
+

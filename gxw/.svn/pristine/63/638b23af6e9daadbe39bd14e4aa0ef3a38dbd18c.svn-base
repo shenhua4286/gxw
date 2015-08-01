@@ -1,0 +1,80 @@
+{template 'member', 'header'}
+	
+	
+	<script>
+	 function confirm_delete(id){
+    	 if(confirm('确认删除吗？')) $('#myform').submit();
+    	
+    }
+	</script>
+	<form name="myform" id="myform" method="post">
+		
+	</form>
+	
+	<div class="x-content">
+		<div class="main-info">
+		
+		   <div class="">
+				<div class="view-info">
+					{if $nowMenu}
+							{L($nowMenu['name'], '', 'member_menu')}
+						{/if}
+				</div>
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}&curmb=add" class="red-bt xfr">+添加项目</a>
+				<div class="edit-bt"></div>
+			</div>
+			
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+					
+						<th class="w50">序号</th>
+						<th class="w300">产品名称</th>
+						<th class="w150">产品图片</th>
+						<th class="w150">产品型号</th>
+						<th class="w150">产品说明</th>
+						<th class="w150">创建时间</th>
+						<th class="w150">状态</th>
+						<th class="w150">操作</th>
+						
+					</tr>
+					{php $index=0}
+					{loop $datas $info}
+                   	{php $index++;}
+					<tr>
+						
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$catid}&isShow=1&id={$info[id]}&curmb=view" title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td align="center"><a target="_blank" href="{$info['thumbs']}"><img src="{$info['thumbs']}" style="max-width:100px;max-height:100px"/></a></td>
+						<td align="center">{$info['xingh']}</td>
+						<td align="center">{$info['yongt']}</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+						<td align="center">
+							{if $info[status]!=99}
+								等待审核
+							{else}
+								已通过审核
+							{/if}
+						</td>
+						<td align="center">
+								<a href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}&curmb=edit"><font color="red">{L('edit')}</font></a>
+								<a href="javascript:;"
+onclick="myform.action='index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}';return confirm_delete();"
+								>删除</a>
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+
+{template 'member', 'footer'}

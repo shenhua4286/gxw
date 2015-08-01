@@ -1,0 +1,16 @@
+{template "member","header"}
+	<div class="x-content">
+	<!--startprint1-->
+			<div class="main-info" style="width:900px;">
+		<div class="crumbs">
+		        <div class="shortcut cu-span">
+		    </div>
+			<div class="tool-bar" style="font-size:20px;font-weight:700;text-align:center;color:#333;margin-bottom:10px;">
+				{$infos['subject']}  
+			</div>
+			{nl2br($infos['content'])}
+			</div>
+			
+		</div>
+		<!--endprint1-->
+	</div>

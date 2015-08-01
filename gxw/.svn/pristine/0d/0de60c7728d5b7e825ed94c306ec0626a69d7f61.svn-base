@@ -1,0 +1,86 @@
+{template 'member', 'header'} 
+{php $isShow=$_GET['isShow'];}
+<script type="text/javascript">
+                <!--
+                var charset = '{CHARSET}';
+                var uploadurl = '{php echo pc_base::load_config('system','upload_url')}';
+                //-->
+            </script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}inputFormart.js" charset="UTF-8"></script>
+<style>
+	.main_page{
+		width:1200px;
+		margin:0 auto;
+
+	}
+	.frame-name{
+		font-size: 16px;
+		font-weight: 400;
+		color: #222;
+		padding-bottom: 23px;
+		margin-top: -10px;
+	}
+</style>
+<div class="main_page">
+	<div class="x-content">
+		<form method="post" action="index.php?m=member&c=index&a=pass&catid={$catid}&steps={$steps}" id="myform" name="myform">
+			<div class="main-info">
+				<div class="table-widget padding10">
+					<table>
+						<!--{php print_r($forminfos[pro_type])}-->
+						
+						{loop $forminfos $k $v} 
+							{if $v['name']!='栏目'}
+							<tr>
+								<th class="w150 textr">{if $v['star']} <font color="red">*</font>{/if}
+									{$v['name']}：
+								</th>
+								<td class="w600 textl noborder">{$v['form']}{if
+									$v['tips']}({$v['tips']}){/if}</td>
+							</tr>
+							{/if} 
+						{/loop} 
+						   <tr>
+								<th class="w150 textr">当前状态:
+								</th>
+								<td class="w350 textl noborder">{L('project'.$data['status'],'','mydiy')}</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<input type="hidden" name="catid" value="{$catid}" />
+									<input name="ids" type="hidden" value="{$id}"> 
+									<input name="type" type="hidden" value="{$type}"> 
+									<input name="status" type="hidden" value="{$status}"> 
+									<input name="steps" type="hidden" value="{php echo $_GET['steps']}"> 
+									
+									<input type="hidden"  name="t" value="{$t}"/>
+									<input type="hidden"  name="pt" value="{$pt}"/>
+									<input type="hidden"  name="menu" value="{php echo $_GET['menu']}"/>
+									
+									<a  id="dosubmit" href="index.php?&menu=1&m=member&c=content&a=published&catid={$catid}&type={$type}&t={$t}&pt={$pt}&status={$status}">返回</a>
+									<input onclick="return check('{$steps}')" name="dosubmit" id="dosubmit" type="submit" data-submit='submit' value="审核通过"/>
+									<input onclick="return check('-1')" name="dosubmit" id="dosubmit" type="submit" data-submit='submit' value="驳回">
+								</td>
+							</tr>
+						
+					  </table>				 
+				</div>
+			</div>
+		 </form>
+
+	</div>
+</div>
+<div class="clear"></div>
+		<script>
+				function check(value){
+					var input='<input type="text" name="steps" value="'+value+'"/>';
+					$("form").append(input);
+					return true;
+				}
+		</script>
+<script src="{JS_PATH}inputFormart.js"></script>

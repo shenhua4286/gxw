@@ -1,0 +1,159 @@
+{template 'member', 'header'}
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+	<div class="x-content">
+		<div class="main-info">
+			
+			<form name="myform" id="myform" method="post">
+				<div style="height: 30px; width: 100%; margin: 5px 0; line-height: 30px;">
+	                <div style="float: left; display: inline-block; height: 30px; line-height: 30px;">
+	                   		 {menu_linkage(3360,'area',$area)}
+	                </div>
+	                审核状态:
+						<select name="status">
+								<option value="" {if !isset($status)}selected{/if}>{L('status','','mydiy')}</option>
+								<option value="99" {if $status==99}selected{/if}>{L('status99','','mydiy')}</option>
+								<option value="2" {if $status==2}selected{/if}>{L('status2','','mydiy')}</option>
+								<option value="1" {if $status==1}selected{/if}>{L('status1','','mydiy')}</option>
+								<option value="-1" {if $status==-1}selected{/if}>{L('status-1','','mydiy')}</option>
+							</select>
+	                公司名称：
+					<input type="text" name="title" value="{$title}" />              
+	                <input type="submit" name="search" value="查找" id="searchbtn">
+
+	            </div>
+
+			</form>
+			<!-- {if $t==134 || $t==103 && $pt==103}
+			<div>
+				<h3><font color="green">温馨提示：您可以在下面选择需要导出的企业数据，如果不选，则全部导出</font></h3><br />
+				<form action="index.php?m=member&c=index&a=member_excel" name="load" method="post">
+					{php foreach($model_fields as $k=>$v)   if(($k+1)%10==0)  "<input type='checkbox' name='fields[]' value='".$v['field']."' />".$v['name']."<br />";else  "<input type='checkbox' name='fields[]' value='".$v['field']."' />".$v['name'];}
+					<br />
+					<input type="submit" value="数据导出" id="load">				
+				</form>
+			</idv> 
+			<script type="text/javascript">
+			$(function(){
+
+			
+/* 				$("#load").click(function(){
+					var cks=$("form[name=load]").find(":checked");
+					var data = [];
+					cks.each(function(){
+						data.push($(this).val());
+					});
+					data = 's='+data.join('|');
+					$.ajax({
+						type:'post',
+						url:'index.php?m=member&c=index&a=member_excel',
+						data:data,
+						success:function(data){
+							document.write(data);
+						}
+					});
+				}); */
+				
+				
+			}); 
+			</script>
+			{/if} -->
+			<div class="table-widget">
+			<form name="check_form" id="check_form" method="post" onsubmit="return checkid('userids[]')"
+			action="index.php?m=member&c=index&a=check_manage_info&steps={$steps}&status={$status}&search=search&t={$t}&menu=1"
+			>
+						<table  cellspacing="0" cellpadding="0" class="textc">
+							<tr>
+								<th class="w50"><input type="checkbox" value="{$info[id]}" id="check_box" onclick="selectAll('userids[]');" /></th>
+								<th class="">企业名称</th>
+								<th class="w200">登录名</th>
+								<th class="w200">邮箱</th>
+								<th class="">审核状态</th>
+								<th class="w60">操作</th>
+							</tr>
+						 	{php $index=0;}
+							{loop $memberlist $m}
+							{php $index++;}
+							<tr>
+								<td align="center" class="pdl10">
+									<input type="checkbox" name="userids[]" value="{$m['userid']}" />
+								</td>
+								<td align="left" class="pdl10">
+									<a  href="index.php?m=member&c=index&a=check_manage_info&type=basic&userid={$m['userid']}&modelid={$m['modelid']}">
+											{$m['nickname']}
+										</a>
+									
+								</td>
+								<td align="left">
+									{$m['username']}
+								</td>
+								<td align="center">
+									{$m['email']}
+								</td>
+								<td align="center">
+									{L('status'.$m['status'],'','mydiy')}
+								</td>
+								<td align="center">
+											<a  href="index.php?m=member&c=index&a=check_manage_info&type=basic&userid={$m['userid']}&modelid={$m['modelid']}">
+												<font color="red">审核</font>
+											</a>
+								</td>
+							</tr>
+							{/loop}
+						</table>
+					<div> 
+						<input type="submit" value="通过审核" name="dosubmit" onclick="return check('99')"/> 
+	 					<input type="submit" value="驳回" name="dosubmit"  onclick="return check('-1')"/> 
+	 			 	</div>
+				</form>
+					
+				
+ 				<div id="pages"> {$pages}</div>
+			</div>
+			{if isProgress}
+				</div>
+			{/if}
+			
+				
+		</div>
+	</div>
+<script>
+	function selectAll(name){
+		var check=$("[name='"+name+"']");
+		$(check).each(function(){
+			this.checked=true;
+		});		
+	}
+
+
+	function check(value){
+		var input='<input type="text" name="status" value="'+value+'"/>';
+		$("#check_form").append(input);
+		return true;
+	}
+
+
+	
+	
+	function checkid(name) {
+		var ids='';
+		$("input[name='"+name+"']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+		if(ids=='') {
+			alert('请选择信息');
+			return false;
+		}
+		/*else if($("#groupid").val() == 11){
+			var reject_c=$("#reject_c")[0];
+			if(reject_c.value== reject_c.defaultValue || $(reject_c).val()==""){
+				alert("请输入驳回意见");
+				return false;
+			}
+		} */
+		check_form.submit();
+	}
+	
+	
+</script>
+

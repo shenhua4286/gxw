@@ -1,0 +1,76 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>长沙市工业信息化项目调度系统</title>
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+{if isset($show_validator)}
+	<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+{/if}
+</head>
+<!--项目进度  -->
+	{php $projectId=$_GET['projectId']}
+	<script>
+		function load(obj){
+			var endDate=$(".yearMonth").eq(0).text();
+			var url="index.php?m=member&c=content&a=publish&catid=13&ajax=1&projectId={$projectId}&proDate={$proDate}&endDate="+endDate
+			var data="";	
+			$(obj).val("加载中...")
+			$.get(url,data,function(data){
+				$(obj).val("加载更多")
+					if($.trim(data) != ""){
+						$("#data_table").prepend(data);
+					}else{
+						alert('没有更多的数据了');
+					}
+				});
+		}
+	</script>
+				<table>
+				<tr>
+					<td align="center" colspan="3">
+						<input type="button" onclick="load(this)" value="加载更多" />
+					</td>
+				</tr>
+				</table>	
+		<table id="data_table">
+			
+		
+			{loop $dates $d}
+						<tr><td class="textr" colspan="3" align="center"  style="border-b" >所属年月：<span class="yearMonth">{$d}</span></td></tr>
+				{php $info=$lists[$d]}
+					{if $info}
+						<tr><td class="w150 textr">当月完成投资：</td><td class="w600 textl noborder">{$info['monthCompleteDz']}(万元)</td></tr>
+						<tr><td class="w150 textr">存在问题：</td><td class="w600 textl noborder">{$info['question']}</td></tr>
+						<tr><td class="w150 textr">形象进度：</td><td class="w600 textl noborder">{$info['progress']}</td></tr>
+						{else}
+						<tr>
+							<td colspan="3">
+								<form method="post" action="" id="myform" name="myform">
+									<input type="hidden" name="info[catid]" value="{$catid}" />
+									<input type="hidden" name="info[yearMonth]" value="{$d}" />
+									<input type="hidden" name="info[projectId]" value="{$projectId}" />
+										<table>
+										{loop $forminfos $k $v}
+											{if $v['name']!='栏目'}
+											<tr>
+												<th class="w150 textr">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
+												<td class="w600 textl noborder">{$v['form']}{if $v['tips']}({$v['tips']}){/if}</td>
+											</tr>
+											{/if}
+										{/loop}
+										<tr>
+											<td align="center"><input name="dosubmit" type="submit" id="dosubmit" value="保存" class="button red-bt"></td></td>
+										</tr>
+									</table>
+							</form>
+							</td>
+						</tr>
+					{/if}
+			{/loop}
+		</table>

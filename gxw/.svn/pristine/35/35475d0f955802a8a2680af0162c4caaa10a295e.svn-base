@@ -1,0 +1,87 @@
+a {
+	color: #47302f;
+	text-decoration: none
+}
+
+a:hover {
+	color: #47302f;
+	text-decoration: underline
+}
+
+body{
+	background: url(bg.png);
+	margin:0 auto;
+}
+body, table, td {
+  color:#47302f;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 12px;
+	line-height: 20px;
+	scrollbar-base-color: #E3E3EA;
+	scrollbar-arrow-color: #5C5C8D
+}
+.mainTable{
+  width:990px;
+  background:url(bg01.gif) repeat-y;
+}
+
+input.a{
+	color: #000000;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 12px;
+	background-color: #ffffff;
+	border-left:1px solid #c0c0c0;
+	border-top:1px solid #c0c0c0;
+	border-right:1px solid #ededed;
+	border-bottom:1px solid #ededed;
+}
+input.b{
+	color: #FFFFFF;
+	background-color: #db3228;
+	border:0;
+	border-left:1px solid #db3228;
+	border-top:1px solid #db3228;
+	border-right:1px solid #6d1914;
+	border-bottom:1px solid #6d1914;
+}
+
+.install {
+	font-family: Arial, Verdana;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000
+}
+
+.message {
+  color:#47302f;
+	background: #ecd2ad;
+	padding: 20px;
+}
+
+.altbg1 {
+	background: #e7decf;
+	color:#493230;
+}
+
+.altbg2 {
+	background: #f4f9ff;
+}
+
+.header td,.tr{
+	color: #9d2b2b;
+	font-weight:bold;
+	height:21px;
+	line-height:21px;
+	background: url(trBg.jpg) repeat-x;	
+	padding-left:10px;
+	text-align: left;
+}
+
+.option td {
+	text-align: left;
+	padding-left:10px;
+}
+
+.redfont {
+	color: #FF0000;
+}

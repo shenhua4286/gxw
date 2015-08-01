@@ -1,0 +1,151 @@
+{template 'member', 'header'}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js"
+	charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script language="javascript" type="text/javascript"
+	src="{JS_PATH}dialog.js"></script>
+	
+<script language="JavaScript">
+<!--
+	$(function() {
+		$.formValidator.initConfig({
+			autotip : true,
+			formid : "myform",
+			onerror : function(msg) {
+			}
+		});
+		$("#nickname")
+				.formValidator({
+					onshow : "{L('input').L('nickname')}",
+					onfocus : "{L('nickname').L('between_2_to_20')}"
+				})
+				.inputValidator({
+					min : 4,
+					max : 40,
+					onerror : "{L('nickname').L('between_2_to_20')}"
+				})
+				.regexValidator({
+					regexp : "ps_username",
+					datatype : "enum",
+					onerror : "{L('nickname').L('format_incorrect')}"
+				})
+				.ajaxValidator(
+						{
+							type : "get",
+							url : "",
+							data : "m=member&c=index&a=public_checknickname_ajax&userid={$memberinfo[userid]}",
+							datatype : "html",
+							async : 'false',
+							success : function(data) {
+								if (data == "1") {
+									return true;
+								} else {
+									return false;
+								}
+							},
+							buttons : $("#dosubmit"),
+							onerror : "{L('already_exist')}",
+							onwait : "{L('connecting_please_wait')}"
+						}).defaultPassed();
+
+		$.formValidator.initConfig({
+			formid : "myform",
+			autotip : true,
+			onerror : function(msg, obj) {
+				alert(msg);
+			}
+		});
+		{$formValidator}
+	});
+//-->
+</script>
+<div class="x-content">
+
+	<div class="main-info">
+		<form method="post" action="" id="myform" name="myform">
+			<input type="hidden" name="type" value="{php echo $_GET['type']}" />
+			
+			<div>
+				<div class="info">
+					<div class="edit">
+						<div class="edit_warp">
+							<div class="view-info">
+							{if $nowMenu}
+								{L($nowMenu['name'],'', 'member_menu')} 
+							{/if}</div>
+						</div>
+					</div>
+
+			<div class="table-widget padding10">
+				<table cellspacing="0" cellpadding="0" align="center">
+					{php $index=0;}
+					 {loop $forminfos $k $v} 
+						{php $basic=strpos($v['form'],$type);} 
+						{if $basic}
+						<tr>
+							<th class="w150 textr">{if $v['isbase']}<font color=red>*</font>{/if}{$v['name']}：
+							</th>
+							<td class="w350 textl noborder">{$v['form']} 
+							{if $v['tips']}({$v['tips']}){/if}</td>
+						</tr>
+						{php $index++;} 
+						{/if} 
+					{/loop}
+
+
+		<!-- <tr>
+			<td>月度更新</td>
+			<td>
+					<input type="hidden" name="content[catid]" value="14" />
+					<table>
+							
+							<tr>
+								<th class="w150 textr"><font color="red">*</font> 当前月份：</th>
+								<td class="w600 textl noborder">
+									{php echo date('Y-m')}
+									<input type="hidden" name="content[yearMonth]" value="{php echo date('Y-m')}"/>
+								</td>
+								
+							</tr>
+							<tr>
+								<th class="w150 textr"><font color="red">*</font> 产值：</th>
+								<td class="w600 textl noborder"><input type="text"
+									name="content[title]" id="title" value="" class="input-text"
+									size="50" inputtitle="">(万元)</td>
+							</tr>
+
+							<tr>
+								<th class="w150 textr"><font color="red">*</font> 投资额：</th>
+								<td class="w600 textl noborder"><input type="text"
+									name="content[invest]" id="invest" value=""
+									class="input-text" size="50">(万元)</td>
+							</tr>
+
+							<tr>
+								<th class="w150 textr">其他说明：</th>
+								<td class="w600 textl noborder"><textarea
+										name="content[monthWork]" id="monthWork"
+										style="width: 100%; height: 46px;"
+										onkeyup="strlen_verify(this, 'monthWork_len', 100)"></textarea>还可输入<b><span
+										id="monthWork_len">100</span></b> 个字符
+									<div id="monthWorkTip" class="onShow">请填写其他说明</div></td>
+							</tr>
+					</table>
+			</td>
+		</tr> -->
+							<tr>
+								<td colspan="2" align="center"><input name="dosubmit"
+									type="submit" id="dosubmit" value="保存"
+									class="button"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

@@ -1,0 +1,97 @@
+{template "member","header"}
+<div class="x-content">
+
+	<div class="main-info">
+	
+					
+		{template 'message','left'}
+
+		<div style="  float: left; width: 70%;">
+	
+		<div class="tool-bar" style="margin-bottom:20px;">发件人： {$infos['send_from_id']}</div>
+
+		<div class="table-widget">
+			<form name="myform" action="?m=message&c=index&a=reply" method="post"
+				id="myform">
+				<table width="100%" cellspacing="0" class="table_form">
+					{php $userid = get_memberinfo_buyusername($infos['send_from_id'],userid)} 
+					{php $user_pic = get_memberavatar($userid,1,45);}
+					<tr>
+						<th><div align=center>
+								<img src="{$user_pic}" width="50" height="50"
+									onerror="this.src='{IMG_PATH}member/nophoto.gif'"><br>
+								<font >{$infos['send_from_id']}</font>
+							</div></th>
+						<td style="padding-left:10px;background:#fff;">{$infos['subject']} - {date('Y-m-d
+							H:i:s',$infos['message_time'])}<br>
+						<br>{$infos['content']}
+						</td>
+					</tr>
+
+					{loop $reply_infos $reply_info} 
+					{php $userid = get_memberinfo_buyusername($reply_info['send_from_id'],userid)}
+					{php $user_pic = get_memberavatar($userid,1,45);}
+					<tr>
+						<th><div align=center>
+								<img src="{$user_pic}" width="50" height="50"
+									onerror="this.src='{IMG_PATH}member/nophoto.gif'"></img><br>{$reply_info['send_from_id']}
+							</div></th>
+						<td>{$reply_info['subject']} - {date('Y-m-d
+							H:i:s',$reply_info['message_time'])}<br>
+						<br></br>{$reply_info['content']}
+						</td>
+					</tr>
+					{/loop}
+					</label>
+					</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		
+		{if $infos['send_from_id']!='SYSTEM'}
+				<div class="tool-bar">回复此消息</div>
+				<form name="myform" action="?m=message&c=index&a=reply" method="post"
+					id="myform">
+					<table width="100%" cellspacing="0" class="table_form">
+						<tr>
+							<th>标 题：</th>
+							<td><input name="info[subject]" type="text" id="subject"
+								size="30" value="Re: {$infos[subject]}" class="input-text" /></td>
+						</tr>
+						<tr>
+							<th>内 容：</th>
+							<td><textarea name="info[content]" id="con" rows="5" cols="50"></textarea></td>
+						</tr>
+						<input type="hidden" name="info[replyid]"
+							value="{$infos['messageid']}" />
+						<input type="hidden" name="info[send_to_id]"
+							value="{$infos['send_from_id']}" />
+		
+						<tr>
+							<th>验证码：</th>
+							<td><input name="code" type="text" id="code" size="10"
+								class="input-text" />
+								{form::checkcode('code_img','4','14',110,30)}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="2"><label> <input type="submit"
+									name="dosubmit" id="dosubmit" value="确 定" class="button" />
+							</label></td>
+						</tr>
+					</table>
+				</form>
+	{/if}
+		
+		
+	</div>
+	</div>
+</div>
+
+
+
+
+
+
+		{template "member","footer"}

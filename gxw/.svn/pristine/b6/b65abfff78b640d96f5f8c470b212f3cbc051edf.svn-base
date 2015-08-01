@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	<style>
+		.qunli{
+			width:250px;
+			height:155px;
+			background: #fff;
+			position: relative;
+			float:left;
+			margin:0 50px 40px 0;
+			color:#333;
+			border:1px solid #b0b0b0;
+			font-size: 12px;
+			font-family: microsoft yahei;
+		}
+		.qunli-mingpian{
+			width:100%;
+			height:60px;
+			padding-top:14px;
+		}
+		.qunli-img{
+			padding:0 10px 0 9px;
+			float:left;
+
+		}
+		.qunli-name{
+			float:left;
+			font-size: 14px;
+			width:165px;
+			overflow: hidden;
+			height: 21px;
+		}
+		.qunli-num{
+			float:left;
+			font-size: 12px;
+			color:;
+			width:120px;
+			background: url(qun-num.png) no-repeat 0 50%;
+			padding-left:26px;
+			margin-top:8px;
+		}
+		.qunli-info{
+			padding:5px 9px;
+			color:#777;
+		}
+		.qunli-jinru{
+			background: #e5e5e5;
+			position: absolute;
+			bottom: 0;
+			left:0;
+			width:100%;
+			display: block;
+			height:30px;
+		}
+		.qunli-jinru img{
+			display: block;
+			margin:0 auto;
+			padding-top:5px;
+		}
+		.qunli-jinru:hover{
+			background: #f0f0f0;
+		}
+	</style>
+		<!-- 群卡片开始 -->
+		<div class="qunli">
+			<div class="qunli-mingpian">
+				<div class="qunli-img">
+					<img src="jixiequn.png" alt="" width="60px" height="50px">
+				</div>
+				<!-- 名称最多11字 -->
+				<div class="qunli-name">
+					 工程机械群1佛挡杀佛佛挡杀佛撒旦
+				</div>
+				<div class="qunli-num">
+					155人
+				</div>
+			</div>
+			<!-- 简介最多35字 -->
+			<div class="qunli-info">
+				欢迎工程机械同行共同交流探讨在行业的 冬天里如何尽快完成转型。
+			</div> 
+			<a class="qunli-jinru" href="">
+				<img src="jinfanjian.png" alt="">
+			</a>
+		</div>
+		<!-- 群卡片结束 -->
+		<div class="qunli">
+			<div class="qunli-mingpian">
+				<div class="qunli-img">
+					<img src="jixiequn.png" alt="" width="60px" height="50px">
+				</div>
+				<div class="qunli-name">
+					 工程机械群1
+				</div>
+				<div class="qunli-num">
+					155人
+				</div>
+			</div>
+			<div class="qunli-info">
+				欢迎工程机械同行共同交流探讨在行业的 冬天里如何尽快完成转型。
+			</div> 
+			<a class="qunli-jinru" href="">
+				<img src="jinfanjian.png" alt="">
+			</a>
+		</div>
+
+		<div class="qunli">
+			<div class="qunli-mingpian">
+				<div class="qunli-img">
+					<img src="jixiequn.png" alt="" width="60px" height="50px">
+				</div>
+				<div class="qunli-name">
+					 工程机械群1
+				</div>
+				<div class="qunli-num">
+					155人
+				</div>
+			</div>
+			<div class="qunli-info">
+				欢迎工程机械同行共同交流探讨在行业的 冬天里如何尽快完成转型。
+			</div> 
+			<a class="qunli-jinru" href="">
+				<img src="jinfanjian.png" alt="">
+			</a>
+		</div>
+	</body>
+
+</html>

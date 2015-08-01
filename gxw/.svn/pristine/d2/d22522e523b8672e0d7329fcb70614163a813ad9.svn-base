@@ -1,0 +1,171 @@
+<?php defined('IN_gxw') or exit('No permission resources.'); ?><?php include template('member','header'); ?>
+	<div class="seach">
+		<div class="relative w1200">
+			<div class="seach-box">
+				<div class="seach-input">
+					<input class="sousuo" type="text" />
+					
+					<input class="sousuobt" type="submit" />
+					<span class="ifr">
+						<img class="xiala-bt" src="<?php echo CSS_PATH;?>/gxw2/img/xiala.png" alt="" />
+					</span>
+					<div class="xiala-box">
+						<div class="seach-tool">
+										<ul>
+											<a class="no2" href="###">
+												<p>产业</p>
+											</a>
+											<a class="no3" href="###">
+												<p>企业</p>
+											</a>
+											<a class="no7" href="###">
+												<p>项目</p>
+											</a>
+											<a class="no5" href="###">
+												<p>产品</p>
+											</a>
+											
+											<a class="no8" href="###">
+												<p>区县</p>
+											</a>
+											<a class="no4" href="###">
+												<p>园区</p>
+											</a>
+											<a class="no8" href="###">
+												<p>政策</p>
+											</a>
+											<a class="no7" href="###">
+												<p>法规</p>
+											</a>
+											<a class="no8" href="###">
+												<p>借鉴</p>
+											</a>
+											<a class="no6" href="###">
+												<p>人才</p>
+											</a>
+											<a class="no8" href="###">
+												<p>标准</p>
+											</a>
+											<a class="no1" href="###">
+												<p>综合</p>
+											</a>
+										</ul>
+									</div>
+					</div>
+				</div>
+			</div>
+			<div class="seach-tool">
+				<ul>
+				<!-- 产业、企业、项目、产品、区县、园区、政策、法规、借鉴、人才、标准、综合 -->
+					<a class="no2" href="###">
+						<p>产业</p>
+					</a>
+					<a class="no3" href="###">
+						<p>企业</p>
+					</a>
+					<a class="no8" href="###">
+						<p>项目</p>
+					</a>
+					<a class="no5" href="###">
+						<p>产品</p>
+					</a>
+					<a class="no4" href="###">
+						<p>区县</p>
+					</a>
+					<a class="no6" href="###">
+						<p>园区</p>
+					</a>
+					<a class="no7" href="###">
+						<p>政策</p>
+					</a>
+					<a class="no1" href="###">
+						<p>综合</p>
+					</a>
+				</ul>
+			</div>
+
+
+<!-- 			<div class="right-bar">
+				<div class="tuijian">
+					<a class="no1" href="">推荐服务</a>
+					<a class="no2" href="">推荐服务</a>
+					<a class="no3" href="">推荐服务</a>
+					<a class="no4" href="">推荐服务</a>
+					<a class="no5" href="">推荐服务</a>
+				</div>
+			</div> -->
+		</div>
+	</div>
+
+
+	<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=45f8f7beaed39795c9b89cc2fe07a07c&action=lists&catid=12&order=listorder+DESC%2Cid+desc&num=8\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'12','order'=>'listorder DESC,id desc','limit'=>'8',));}?>
+	<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+
+	<div class="newsbar">
+		<div class="w1200 relative">
+			<div class="w1100 swiper-container">
+				<div class="swiper-wrapper">
+
+					<?php $index=0;?>
+					<?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?> 
+						<?php if($index%4==0) { ?>
+							<ul class="swiper-slide">
+						<?php } ?>
+							<li>
+								<a href="<?php echo $val['url'];?>&t=77&menu=1" onclick="parent.menu_activityIndex=7;parent.loadMenu(27);parent.menu(27);">
+									<img src="<?php echo $val['thumb'];?>" width="130" height="120" />
+									<h5><?php echo str_cut($val['title'],80,'...');?></h5>
+									<p><?php echo str_cut($val['description'],130,'...');?></p>
+								</a>
+							</li>
+						<?php if($index%4==3) { ?>
+							</ul>
+						<?php } ?>
+						<?php $index++;?>
+					<?php $n++;}unset($n); ?>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="arrowl"></div>
+			<div class="arrowr"></div>
+		</div>
+	</div>
+	
+	<script> 
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 5000,//可选选项，自动滑动
+		pagination : '.swiper-pagination',
+		grabCursor: true,
+		paginationClickable: true
+
+	})
+
+
+	// var mySwiper = new Swiper('.swiper-container',{
+	//   pagination: '.pagination',
+	//   loop:true,
+	//   grabCursor: true,
+	//   paginationClickable: true
+	// })
+	$('.arrowl').on('click', function(e){
+	  e.preventDefault()
+	  mySwiper.swipePrev()
+	})
+	$('.arrowr').on('click', function(e){
+	  e.preventDefault()
+	  mySwiper.swipeNext()
+	})
+	
+	//dfsf
+	$('.xiala-bt').click(function(e){
+		e.stopPropagation();
+		$('.xiala-box').toggle();
+	})
+	$('.xiala-box').click(function(e){
+		e.stopPropagation();
+	})
+	$(document).click(function(){
+			$('.xiala-box').hide();
+	})
+	</script>
