@@ -1,0 +1,7 @@
+{if $catid==9}
+	{template 'member','content_published_project_steps'}
+	{elseif $catid==10}
+	{template 'member','content_published_products_steps'}
+	{else}
+	{template 'member','content_published_object'}
+{/if}

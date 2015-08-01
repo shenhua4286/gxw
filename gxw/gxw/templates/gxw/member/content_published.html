@@ -1,0 +1,23 @@
+{if $catid==9}
+	{template 'member','content_published_project'}
+	{elseif $catid==10}
+	{template 'member','content_published_products'}
+	{elseif $catid==12}
+	{template 'member','content_published_notice'}
+	{elseif $catid==13}
+	{template 'member','content_published_projectProgress'}
+	{elseif $catid==14}
+	{template 'member','content_published_monthProgress'}
+    {elseif $catid==15}
+	{template 'member','content_published_service'}
+	{elseif $catid==16}
+	{template 'member','content_published_event'}
+	{elseif $catid==17}
+	{template 'member','content_published_feedback'}
+	{elseif $catid==19}
+	{template 'member','content_published_application'}
+	{elseif $catid==29}
+	{template 'member','content_published_shop'}
+	{else}
+	{template 'member','content_published_object'}
+{/if}

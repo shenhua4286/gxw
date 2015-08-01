@@ -1,0 +1,42 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info">
+
+
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th width="20">序号</th>
+						<th width="120">事务所名称</th>
+						<th width="100">事务所地址</th>
+						<th width="100">事务所简介</th>
+						<th width="100">发布时间</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					
+					<tr>
+						<td align="center" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							
+							<a href="" target="_blank">{str_cut($info['office_name'], 60)}</a>
+							
+						</td>
+						<td>{$info["office_address"]}</td> 
+						<td align="left">{str_cut($info['description'],300,'...')}</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+

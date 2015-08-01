@@ -1,0 +1,230 @@
+{template 'member', 'header'}
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="JavaScript">
+<!--
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#nickname").formValidator({onshow:"{L('input').L('nickname')}",onfocus:"{L('nickname').L('between_2_to_40')}"}).inputValidator({min:2,max:40,onerror:"{L('nickname').L('between_2_to_40')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checknickname_ajax&userid={$memberinfo[userid]}",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "{L('already_exist')}",
+		onwait : "{L('connecting_please_wait')}"
+	}).defaultPassed();
+
+	{$formValidator}
+});
+
+//-->
+
+</script>
+<style>
+.noborder input{
+	height: 30px;
+/*	border:1px solid #999;*/
+}
+
+</style>
+<script>
+  var info,nowShowIndex=0,prevObj,infoLength,edits;
+	$(function(){
+		info=$(".table-widget");
+		edits=$(".view-info");
+		infoLength=info.length;
+		showHide();
+		
+		$(".next").click(next);
+		$(".prev").click(prev);
+		$(".view-info").click(function(){
+				nowShowIndex=$(this).index();
+				showHide();
+		});
+	})
+	function next(){
+		if(nowShowIndex<infoLength){
+			nowShowIndex++;
+			showHide();
+		}
+	}
+	
+	function prev(){
+		nowShowIndex--
+		showHide();
+	}
+	
+	function showHide(){
+		if(prevObj!=null){
+			$(prevObj).css("display","none");
+		}
+		
+		$(edits).removeClass('on');
+		$(edits[nowShowIndex]).addClass('on');
+		prevObj=info[nowShowIndex];
+		var top=100;
+		$("html,body").animate({scrollTop:top},300);
+		$(prevObj).css("display","block");
+	}
+	
+	
+</script>
+
+
+<div class="x-content">
+<form method="post" action="" id="myform" name="myform">
+	<input type="hidden"  name='info[status]' id='status'  value="0"  />
+		
+
+		<div class="main-info">
+			{if $memberinfo['groupid'] == 12}
+    			<script src="{JS_PATH}inputFormart.js"></script>
+    		 <div class="checkInfo" style="text-align:center;">锟斤拷锟斤拷锟斤拷业锟斤拷息锟窖撅拷锟斤拷锟酵拷锟斤拷耍锟斤拷锟斤拷锟斤拷俅锟斤拷薷锟�.</div>
+			{else}
+			<style>
+				.table-widget{
+					display:none;
+				}
+			</style>
+		{/if}
+			
+			<style>
+				.edit_warp{
+					margin:0px 30px 0px 0px;
+					float:left;
+					cursor:pointer;
+/*					display: block;
+					width:105px;*/
+				}
+				.view-info{
+					border-bottom:3px solid #ccc;	
+				}
+				.edit_warp > .on{
+					border-bottom:3px solid #3a7aeb;	
+				}
+			</style>
+			
+			<div class="info">
+				<div class="edit">
+				    <div class="edit_warp">
+						<div class="view-info">锟斤拷锟斤拷锟斤拷息</div>
+						<div class="view-info">锟斤拷锟斤拷锟斤拷营锟斤拷锟�</div>
+						<div class="view-info">锟狡硷拷锟斤拷锟斤拷锟斤拷锟�</div>
+					</div>
+				</div>
+
+				<div class="table-widget padding10">
+					<table cellspacing="0" cellpadding="0"
+						align="center">
+						<tr>
+							<th class="w150 textr">锟斤拷录锟斤拷</th>
+							<td class="w350 textl noborder">
+								{$memberinfo['username']}
+							</td>
+						</tr>
+						<tr>
+							<th class="w150 textr">锟斤拷位锟斤拷锟斤拷</th>
+							<td class="w350 textl noborder">
+								<input id="nickname" name="nickname"
+									value="{$memberinfo['nickname']}" type="text"
+									class="input-text" size="30">
+							</td>
+							<input type="hidden" name="groupid" value="10"/>
+					</tr>
+					
+					{php $index=0;}
+					{loop $forminfos $k $v}
+					{php $basic=strpos($v['form'],'basic');}
+					  {if $basic}
+								<tr>
+									<th class="w150 textr">{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}锟斤拷</th> 
+									<td class="w350 textl noborder">{$v['form']}
+										{if $v['tips']}({$v['tips']}){/if}
+									</td>
+								</tr>
+							{php $index++}
+					  {/if}
+					{/loop}
+						<tr>
+							<td colspan="2" align="center">
+								<input type="button"  value="锟斤拷一锟斤拷" class="button next">
+							</td>
+						</tr>
+					
+				</table>
+			</div>
+		</div>
+		
+				<div class="table-widget padding10">
+				
+					<table  cellspacing="0" cellpadding="0">
+						{php $index=0;}
+						{loop $forminfos $k $v}
+						{php $basic=strpos($v['form'],'pro');}
+						  {if $basic}
+									<trh>
+										<th class="w150 textr">{$yu}{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}锟斤拷</th> 
+										<td class="w350 textl noborder">{$v['form']}
+										{if $v['tips']}({$v['tips']}){/if}
+										</td>
+									</tr>
+								{php $index++}
+						  {/if}
+						{/loop}
+						
+						<tr>
+							<td colspan="2" align="center">
+								<input type="button"  value="锟斤拷一锟斤拷" class="button prev">
+								
+								<input type="button"  value="锟斤拷一锟斤拷" class="button next">
+						
+							</td>
+						</tr>
+					</table>
+				</div>
+			
+			<div class="table-widget padding10">
+				<table  cellspacing="0" cellpadding="0">
+					{php $index=0;}
+					{loop $forminfos $k $v}
+					{php $basic=strpos($v['form'],'kej');}
+					  {if $basic}
+								<tr>
+									<th class="w150 textr">{$yu}{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}锟斤拷</th> 
+									<td class="w350 textl noborder">{$v['form']}
+									{if $v['tips']}({$v['tips']}){/if}
+									</td>
+								</tr>
+							{php $index++}
+					  {/if}
+					{/loop}
+						<tr>
+							<td colspan="2" align="center">
+								<input type="button"  value="锟斤拷一锟斤拷" class="button prev">
+								<input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button">
+							</td>
+						</tr>
+					</table>
+			</div>
+		</div>
+		
+		</div>
+{template 'member', 'footer'}
+{php $type=isset($_GET['type']) ? $_GET['type']:'basic';}
+{if $type=='basic'}
+		{template 'member', 'account_manage_info_basic'}
+	{else}
+		{template 'member', 'account_manage_info_update'}
+{/if}

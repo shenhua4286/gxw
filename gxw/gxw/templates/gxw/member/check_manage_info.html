@@ -1,0 +1,75 @@
+<!-- 企业审核
+	li
+ -->
+{php $type=isset($_GET['type']) ? $_GET['type']:'basic';}
+{template 'member', 'header'}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js"
+	charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}jquery-form.js"></script>
+<script src="{JS_PATH}inputFormart.js"></script>
+
+
+
+<div class="main_page">
+	<div class="x-content">
+			<div class="main-info">
+				<h3 class="frame-name"></h3>
+				<div class="table-widget padding10">
+			<form>		<table>
+							{php $index==0;}
+							{loop $forminfos $k $v} 
+									{if $v['name']!='栏目'}
+										{if $v['formtype'] !='textarea'}
+											{if $index%2==0}<tr>{/if}
+												<th class="w200 textr">
+													{$v['name']}：
+												</th>
+												<td class="w300 textl noborder">{$v['form']}&nbsp;&nbsp;</td>
+											
+											{if $index%2==1}</tr>{/if}
+											
+											{php $index++;}
+										{else} 
+										<!-- textarea独占一行 -->
+											<tr>
+												<th class="w200 textr" >
+													{$v['name']}：
+												</th>
+												<td  colspan="3" class="w300 textl noborder">{$v['form']}</td>
+											<tr>
+										{/if}
+									{/if} 
+											
+									
+							{/loop} 
+					  	<tr>
+							<th class="w150 textr">当前状态:
+							</th>
+							<td class="w350 textl noborder">{L('status'.$memberinfo['status'],'','mydiy')}</td>
+						</tr>
+						<tr>
+								<td colspan="4" align="center">
+									<input onclick="javascript:history.back();return false;" id="dosubmit" type="submit" data-submit='submit' value="返回"/>
+									<input onclick="return check('99')" name="dosubmit" id="dosubmit" type="submit" data-submit='submit' value="审核通过"/>
+									<input onclick="return check('-1')" name="dosubmit" id="dosubmit" type="submit" data-submit='submit' value="驳回">
+								</td>
+							</tr>		 
+					  </table>		
+				</form>
+				</div>
+			</div>
+	</div>
+</div>
+
+		<script>
+				function check(value){
+					var input='<input type="text" name="status" value="'+value+'"/>';
+					$("form").append(input);
+					return true;
+				}
+		</script>

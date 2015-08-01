@@ -1,0 +1,138 @@
+* {padding:0px;margin:0;}
+body {width:100%;display:table;margin-top:-35px!important;margin:0 auto;padding:0px;color:#000;font-family:Courier New;font-size:12px;background:#ffffff}
+div,td,th{font-size:12px}
+a{color:#0066cc;text-decoration:none;}
+a:hover{color:#FF0000;text-decoration:none;}
+ul,form,p{padding:0;margin:0}
+ul{list-style:none}
+img{border:none;}
+textarea,body{
+	scrollbar-face-color: #F6F6f6;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #F0F2DB;
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-arrow-color:  #666666;
+	scrollbar-track-color: #FCFDF9;
+	scrollbar-darkshadow-color: #cccccc; 
+	border-left:1px solid #b4b4b4;border-top:1px solid #b4b4b4;border-right:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8;
+}
+input{font-family: ËÎÌו,Verdana,Arial,Helvetica,sans-serif}
+input.a{width:300px;height:22px;line-height:18px;border-left:1px solid #b4b4b4;border-top:1px solid #b4b4b4;border-right:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8}
+input.b{width:50px;height:22px;line-height:18px;border-left:1px solid #b4b4b4;border-top:1px solid #b4b4b4;border-right:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8}
+input.btn1,input.btn2{border:0;color:#ffffff;height:23px;line-height:23px;background:url(btnbg.gif)}
+.header{height:71px;background:url(topbg.gif) repeat-x}
+.header .link{display:none;}
+.header .logo{
+  width:130px;
+  height:35px;
+  background:url(logo.gif) no-repeat;
+  margin:35px 0 0 15px;
+}
+.menu{margin-top:-31px}
+.menu li{float:left;text-align:center;width:90px;height:31px;line-height:31px;overflow:hidden}
+.menu li a{display:inline-block;width:90px;height:31px;line-height:31px;border:1px solid #cce4f0;background:url(menubg.gif) repeat-x;color:#0066cc;}
+.menu li.left{width:185px}
+.menu li.right{display:none;}
+.menu li.sel a,.menu li a:hover{border:1px solid #c6d9e7;border-bottom:1px solid #ffffff;background:#ffffff;color:#000000;font-weight:bold;}
+.footer{
+  clear:both;
+  height:45px;
+  line-height:22px;
+  padding:10px 0 0 10px;
+  border-top:1px dotted #dddddd;
+}
+.page{
+  margin-top:31px;
+  background:#f7f7f7;
+}
+.page .left{
+  float:left;
+  width:165px;
+  height:600px;
+  background:#f7f7f7;
+  margin-right:-1px;
+  border-right:1px solid #cccccc;
+}
+.page .left .ti{
+  height:23px;
+  background:url(lefttopbg.gif) repeat-x;
+}
+.page .left .co{
+  padding:3px;
+}
+.page .left .co li{
+  margin:3px;
+}
+.page .left .co li a{
+  display:block;
+  width:152px;
+  height:22px;
+  line-height:22px;
+  text-align:left;
+  padding-left:20px;
+  border:1px solid #f7f7f7;
+}
+.page .left .co li a:hover{
+  border:1px solid #d8f0fa;
+  background:url(left_menubg_hover.gif) repeat-x;
+}
+.page .left .co li.sel a{
+  border:1px solid #99defd;
+  background:url(left_menubg_sel.gif) repeat-x;
+}
+.page .main{
+  min-width:800px;
+  float:left;
+  background:#ffffff;
+  border-left:1px solid #cccccc;
+}
+.page .main .where{
+  padding-left:20px;
+  line-height:28px;
+}
+.page .main .toolbar{
+  height:36px;
+  line-height:36px;
+  padding-left:15px;
+  background:url(toolbarbg.gif) repeat-x;
+}
+.page .main .content{
+  padding-top:30px;
+  background:url(contentbg.gif) repeat-x left top;
+}
+.main .usr{
+  color:#0066cc;
+  font-weight:bold;
+}
+.main .id{
+  color:#999999;
+}
+.main .num{
+  color:#ff0000;
+}
+.main .price{
+  color:#ff5500;
+  font-weight:bold;
+  font-family: Tahoma;
+}
+table.list{
+  width:100%;
+}
+table.list th{
+  text-align:left;
+  font-weight:normal;
+  height:30px;
+  padding-left:15px;
+  background:#e3f3ff;
+  border-bottom:1px solid #cce4f0;
+}
+table.list td{
+  height:30px;
+  padding-left:3px;
+  border-bottom:1px solid #eeeeee;
+}
+.link li{
+  float:left;
+  margin:0 50px;
+  text-align:center;
+}

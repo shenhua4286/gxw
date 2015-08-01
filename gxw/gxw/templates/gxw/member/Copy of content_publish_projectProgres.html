@@ -1,0 +1,31 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>长沙市工业信息化项目调度系统</title>
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+{if isset($show_validator)}
+	<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+{/if}
+</head>
+{php $dates=array(); $num=1;for($i=5;$i>$num;$i--){$dates[]=date('Y/m',strtotime('-' .$i.' month')); }}
+
+		<table>
+			{loop $dates $d}
+					<tr><td colspan="3" align="center">所属年月：{$d}</td></tr>
+				{php $info=$lists[$d]}
+					{if $info}
+						<tr><td class="w150 textr">当月完成投资：</td><td class="w600 textl noborder">{$info['monthCompleteDz']}</td></tr>
+						<tr><td class="w150 textr">存在问题：</td><td class="w600 textl noborder">{$info['question']}</td></tr>
+						<tr><td class="w150 textr">形象进度：</td><td class="w600 textl noborder">{$info['progress']}</td></tr>
+						{else}
+						{template 'member','projectProgres_form'}
+					{/if}
+			{/loop}
+		</table>
+ 

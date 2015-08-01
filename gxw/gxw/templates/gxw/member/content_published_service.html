@@ -1,0 +1,41 @@
+{template 'member', 'header'}
+		<div class="x-content">
+		<div class="main-info">
+			<div class="blue-tool">
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}&curmb=add&menu=1&t={$t}&pt={$pt}" class="blue-bt red-bt xfr">+我要提问</a>
+			</div>
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">问题描述</th>
+						<th class="w150">提交时间</th>
+						<th class="w150">操作</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}" title="{$info['content3']}">{str_cut($info['content3'], 60)}</a>
+						</td>
+						<td align="center">{date('Y-m-d H:i:s',$info['inputtime'])}</td>
+						<td align="center">
+							<a title="编辑" href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}&curmb=edit"><font class="edit-bt" color="red">&nbsp;&nbsp;</font></a>
+							<a title="删除" href="javascript:;" onclick="myform.action='index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}';return confirm_delete();"><font class="del-bt">&nbsp;&nbsp;</font></a>
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+

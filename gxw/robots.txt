@@ -1,0 +1,10 @@
+#
+# robots.txt for gxw v9
+#
+User-agent: * 
+Disallow: /caches
+Disallow: /gxw
+Disallow: /install
+Disallow: /phpsso_server
+Disallow: /api
+Disallow: /admin.php

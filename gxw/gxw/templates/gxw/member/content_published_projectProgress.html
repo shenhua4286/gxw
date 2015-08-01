@@ -1,0 +1,56 @@
+{template 'member', 'header'}
+<script>
+    function confirm_delete(id){
+    	 if(confirm('确认删除吗？')) $('#myform').submit();
+    	
+    }
+</script>
+
+	<form name="myform" id="myform" method="post">
+		
+	</form>
+	<div class="x-content">
+			<div class="main-info">
+				<div class="blue-tool">
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}&curmb=add&t={$t}&pt={$pt}&menu=1" class="blue-bt red-bt xfr">+添加项目</a>
+			</div>
+
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">进度名称</th>
+						<th class="w150">所属项目</th>
+						<th class="w100">添加时间</th>
+						<th class="w150">操作</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$catid}&isShow=1&id={$info[id]}"  title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td>{$info[projectTitle]}</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+						<td align="center">
+								<a href="index.php?m=member&c=content&a=edit&catid={$catid}&id={$info[id]}"><font color="red">{L('edit')}</font></a>
+								<a href="javascript:;" onclick="myform.action='index.php?m=member&c=content&a=delete&catid={$info[catid]}&id={$info[id]}';return confirm_delete();">
+									删除
+								</a>
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+

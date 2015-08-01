@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script type="text/javascript"></script>
+</head>
+<body>
+<div class="x-header">
+    <h1 class="z-title white">长沙市工业和信息化项目调度系统</h1>
+    <div class="login-nav">
+        <li><a href="">首页</a></li><span>|</span>
+        <li><a href="">注册</a></li><span>|</span>
+        <li><a href="">登录</a></li><span>|</span>
+        <li><a href="">提意见</a></li><span>|</span>
+        <li><a href="">帮助</a></li>
+    </div>
+</div>
+
+<div class="x-content">
+
+    <div class="login-info">
+        <img src="img/login-img.jpg">
+    </div>
+    <div class="login-widget">
+        <div class="login-widget-title">企业登录</div>
+        <form method="post" action="" onsubmit="save_username();" id="myform" name="myform">
+            <input type="hidden" name="forward" id="forward" value="{$forward}">
+
+            <div class="login-input"><label>{L('username')}：</label>
+                <input type="text" id="username" name="username" size="22" class="h38 w200"></div>
+
+            <div class="login-input"><label>{L('password')}：</label>
+
+
+                <div class="login-input"><label>{L('checkcode')}：</label>
+                    <input type="text" id="code" name="code" size="8" class="h38 w120">{form::checkcode('code_img', '5', '14', 120, 26)}
+
+                </div>
+                <div class="login-input"><input type="submit" value="登录" class="submit-bt"></input></div>
+        </form>
+
+
+
+
+        <div class="zhucewj"><a href="" class="zhuce b-hover">注册</a><a href="" class="wangji b-hover">忘记密码</a></div>
+    </div>
+</div>
+<div class="x-footer">
+    <div class="footer-info">长沙市工业和信息化项目调度系统</div>
+    <div class="footer-info">长沙经济和信息化委员会</div>
+</div>
+
+
+</body>
+</html>
+

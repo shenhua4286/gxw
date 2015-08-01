@@ -1,0 +1,41 @@
+<?
+$csspath='themes/'.($Channel['theme']?$Channel['theme']:$setting['theme']);
+$tplpath="plugins/toolbar";
+$toolbars=$CSS=$ONLOAD=$JS='';
+$closeobj=$toolbarkeyA=$toolbarkeyB=$toolbarkeyC=$ONLOAD=$SWFLOAD=array();
+$dh=opendir($tplpath);
+$fdata=@readover($tplpath.'/list.txt');
+$spliter='';
+if($fdata){
+  foreach(explode(',',$fdata) as $k){
+    if($k){
+      unset($Con);
+      @include_once($tplpath.'/'.$k.'.php');
+      if($Con){
+        if($k=='catch' && $client!='1')continue;
+        $toolbarkeyS[]=$k;
+        if(in_array($Con['group'],array(1,3,5,7)))$toolbarkeyA[]=$k;
+        if(in_array($Con['group'],array(2,3,6,7)))$toolbarkeyB[]=$k;
+        if(in_array($Con['group'],array(4,5,6,7)))$toolbarkeyC[]=$k;
+        if($Con['onload'])$ONLOAD[$Con['onload']]=$Con['onload'];
+        if($Con['swfload'])$SWFLOAD[$Con['swfload']]=$Con['swfload'];
+        $JS.=$Con['js']?"\n".$Con['js']:'';
+        $JS.=$Con['css']?"\n".$Con['css']:'';
+        $HTML.=$Con['html']?"\n".$Con['html']:'';
+        $Con['img']=str_replace('./',$tplpath.'/',$Con['img']);
+        $Con['img']=str_replace('*/',"images/$dialogstyle/",$Con['img']);
+        $toolbarkeyA[]=$Con['title'];
+        $toolbarkeyB[]=$Con['onclick'];
+        $toolbarkeyC[]=$Con['img'];
+        if($Con['autoclose'])$closeobj[]='$("'.$Con['autoclose'].'").style.display="none"';
+      }
+    }else{
+      $toolbarkeyA[]='';
+      $toolbarkeyB[]='';
+      $toolbarkeyC[]='';
+    }
+  }
+}
+closedir($dh);
+$FlashVars='filesize=16&BaseUrl='.$homepage.'&onezid='.(isset($_GET['onezid'])?$_GET['onezid']:'').'&MenuData='.$csspath.'/toolbarHover.gif#'.$csspath.'/toolbarSpliter.gif#'.implode('|',$toolbarkeyA).'#'.implode('|',$toolbarkeyB).'#'.implode('|',$toolbarkeyC);
+?>

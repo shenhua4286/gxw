@@ -1,0 +1,107 @@
+{template 'member','header'}
+	<style>
+		.qunli{
+			width:250px;
+			height:155px;
+			background: #fff;
+			position: relative;
+			float:left;
+			margin: 15px 30px 20px 25px;
+			color:#333;
+			border:1px solid #b0b0b0;
+			font-size: 12px;
+			font-family: microsoft yahei;
+		}
+		.qunli-mingpian{
+			width:100%;
+			height:60px;
+			padding-top:14px;
+		}
+		.qunli-img{
+			padding:0 10px 0 9px;
+			float:left;
+
+		}
+		.qunli-name{
+			float:left;
+			font-size: 14px;
+			width:165px;
+			overflow: hidden;
+			height: 21px;
+		}
+		.qunli-num{
+			float:left;
+			font-size: 12px;
+			color:;
+			width:120px;
+			background: url(qun-num.png) no-repeat 0 50%;
+			padding-left:26px;
+			margin-top:8px;
+		}
+		.qunli-info{
+			padding:5px 9px;
+			color:#777;
+		}
+		.qunli-jinru{
+			background: #e5e5e5;
+			position: absolute;
+			bottom: 0;
+			left:0;
+			width:100%;
+			display: block;
+			height:30px;
+		}
+		.qunli-jinru img{
+			display: block;
+			margin:0 auto;
+			padding-top:5px;
+		}
+		.qunli-jinru:hover{
+			background: #f0f0f0;
+		}
+	</style>
+	
+		
+		
+		
+		
+		
+	
+	<div style="width:980px;">
+			   <!-- 通知列表头部的面包屑和搜索  开始 -->
+                    <div class="tz-mianbaoxie relative">
+                        <div class="blue-block"></div>
+                       <a onclick="parent.menu(4);">首页</a>
+                       >
+                      {catpos($catid)}{$title}
+                    </div>	
+		<!-- 群卡片开始 -->
+		       {php $index=0}
+                {loop subcat($catid) $v}
+		               <div class="qunli">
+							<div class="qunli-mingpian">
+								<div class="qunli-img">
+									<img src="{IMG_PATH}/gxw/jixiequn.png" alt="" width="60px" height="50px">
+								</div>
+								<!-- 名称最多11字 -->
+								<div class="qunli-name">
+									{$v[catname]}
+								</div>
+								<div class="qunli-num">
+									{$v['catid']}人
+								</div>
+							</div>
+							<!-- 简介最多35字 -->
+							<div class="qunli-info">
+								欢迎{$v[catname]}同行共同交流探讨在行业的 冬天里如何尽快完成转型。
+							</div> 
+							<a class="qunli-jinru" href="{$v[url]}">
+								<img src="{IMG_PATH}/gxw/jinfanjian.png" alt="">
+							</a>
+						</div>
+                    {php $index++;}
+                {/loop}
+		</div>
+	</body>
+
+</html>

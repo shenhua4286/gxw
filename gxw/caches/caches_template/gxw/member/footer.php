@@ -1,0 +1,17 @@
+<?php defined('IN_gxw') or exit('No permission resources.'); ?><div class="ifooter">
+		<div class="w1200">
+			<div class="ifl">主办：长沙市经济和信息化委员会   技术支持：湖南蓝海科技有限公司  </div>
+			<div class="ifr">
+				<a  href='javascript:alertInfo("<br>长沙市工业和信息化委员会","<?php echo CSS_PATH;?>gxw2/img/mail.png")'>关于我们</a><span>|</span>
+				<a href="statics/长沙工业和信息化项目调度系统企业使用手册.doc">使用帮助</a><span>|</span>
+				<a href='javascript:alertInfo("<br>欢迎加入QQ群：260226212与我们一起交流","<?php echo CSS_PATH;?>gxw2/img/mail.png")'>联系我们</a><span>|</span>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$('.menu-div').on('click',function(){
+		alert('')
+	})
+</script>
+</html>

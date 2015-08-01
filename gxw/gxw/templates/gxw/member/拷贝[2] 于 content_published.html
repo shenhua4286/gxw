@@ -1,0 +1,13 @@
+{if $catid==9}
+	{template 'member','content_published_project'}
+	{elseif $catid==10}
+	{template 'member','content_published_products'}
+	{elseif $catid==12}
+	{template 'member','content_published_notice'}
+	{elseif $catid==13}
+	{template 'member','content_published_projectProgress'}
+	{elseif $catid==14}
+	{template 'member','content_published_monthProgress'}
+	{else}
+	{template 'member','content_published_object'}
+{/if}

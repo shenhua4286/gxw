@@ -1,0 +1,101 @@
+A {
+  COLOR: #123960;
+  TEXT-DECORATION: none;
+}
+A:hover {
+  COLOR: #123960;
+  TEXT-DECORATION: underline;
+}
+A.menu{
+  COLOR: #FFFFFF;
+  TEXT-DECORATION: none;
+}
+body {
+	font-size: 12px;
+	border: 0;
+  word-break:break-all;
+  overflow:hidden;
+  background:#fabbc4 url(bg.png);
+}
+.toplink a{
+  color:#ffffff;
+  font-weight:bold;
+  font-size:14px;
+  line-height:20px;
+}
+.toplink a:hover{
+  color:#ffea00;
+}
+table,td,p,div {
+	font-size: 12px;
+  word-break:break-all;
+}
+#minwins{
+  position:absolute;
+  z-index:1;
+  left:0px;
+  bottom:0px;
+  border-top:1px solid #cccccc;
+  background:#ffffff;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+#minwins li{
+  float:left;
+  width:120px;
+  height:20px;
+  overflow:hidden;
+  line-height:20px;
+  padding-left:20px;
+  margin:3px;
+  background:url(ico.gif) no-repeat 2px 3px;
+}
+.Onez_Dlgs_Box{
+  position:absolute;
+  z-index:6200103;
+  left:100px;
+  top:100px;
+  width:169px;
+  display:none;
+}
+.Onez_Dlgs_Box .Onez_Dlgs_Box_T{
+  width:169px;
+  height:5px;
+  overflow:hidden;
+  background:url(MT.gif) no-repeat;
+}
+.Onez_Dlgs_Box .Onez_Dlgs_Box_B{
+  width:169px;
+  height:5px;
+  overflow:hidden;
+  background:url(MB.gif) no-repeat;
+}
+.Onez_Dlgs{
+  margin:0;
+  padding:0;
+  list-style:none;
+  background:url(MC.gif) no-repeat left top;
+}
+.Onez_Dlgs li{
+  width:169px;
+  height:22px;
+  overflow:hidden;
+}
+.Onez_Dlgs li a{
+  display:block;
+  color:#000000;
+  overflow:hidden;
+  padding-left:38px;
+  line-height:22px;
+  text-decoration:none;
+}
+.Onez_Dlgs li a:hover{
+  color:#ffffff;
+  background:url(MH.gif) no-repeat left top;
+  text-decoration:none;
+}
+.Onez_Dlgs li.Onez_Dlgs_Box_Split{
+  height:12px;
+  background:url(MS.gif) no-repeat right 0px;
+}

@@ -1,0 +1,145 @@
+{template 'member', 'header'}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="JavaScript">
+    <!--
+    $(function(){
+        $.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+        $("#nickname").formValidator({onshow:"{L('input').L('nickname')}",onfocus:"{L('nickname').L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('nickname').L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+            type : "get",
+            url : "",
+            data :"m=member&c=index&a=public_checknickname_ajax&userid={$memberinfo[userid]}",
+            datatype : "html",
+            async:'false',
+            success : function(data){
+                if( data == "1" ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            buttons: $("#dosubmit"),
+            onerror : "{L('already_exist')}",
+            onwait : "{L('connecting_please_wait')}"
+        }).defaultPassed();
+
+        {$formValidator}
+    });
+
+    //-->
+
+</script>
+<style>
+    .noborder input{
+        height: 30px;
+        border:1px solid #333;
+    }
+</style>
+
+
+<div class="x-content">
+    <form method="post" action="" id="myform" name="myform">
+        <input type="hidden"  name='info[status]' id='status'  value="0"  />
+
+        <div class="main-info">
+            <div class="edit">
+                <div class="view-info">基本信息</div>
+                <div class="edit-bt"></div>
+            </div>
+
+
+
+            <table>
+
+            </table>
+
+
+
+
+            <div class="table-widget padding10">
+
+                <table  cellspacing="0" cellpadding="0">
+
+                    {php echo '2222';print_r($forminfos);}
+                    {php $index=0;}
+                    {loop $forminfos $k $v}
+
+                    {if $index%2 ==0}
+                    <tr>
+                        {/if}
+                        <th class="w150 textr">{$yu}{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</th>
+                        <td class="w600 textl noborder">{$v['form']}</td>
+                        {if $index%2==1}
+                    </tr>
+                    {/if}
+                    {php $index++}
+
+                    {/loop}
+
+                </table>
+            </div>
+
+            <div class="edit">
+                <div class="view-info">科技创新信息</div>
+                <div class="edit-bt"></div>
+            </div>
+
+            <div class="table-widget padding10">
+                <table  cellspacing="0" cellpadding="0">
+                    {php $index=0;}
+                    {loop $forminfos $k $v}
+                    {php $basic=strpos($v['form'],'kej');}
+                    {if $basic}
+                    {if $index%2 ==0}
+                    <tr class="{$yu}">
+                        {/if}
+                        <th class="w150 textr">{$yu}{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</th>
+                        <td class="w600 textl noborder">{$v['form']}</td>
+                        {if $index%2==1}
+                    </tr>
+                    {/if}
+                    {php $index++}
+                    {/if}
+                    {/loop}
+                </table>
+            </div>
+
+            <div class="edit">
+                <div class="view-info">生产经营情况</div>
+                <div class="edit-bt"></div>
+            </div>
+
+            <div class="table-widget padding10">
+
+                <table  cellspacing="0" cellpadding="0">
+                    {php $index=0;}
+                    {loop $forminfos $k $v}
+                    {php $basic=strpos($v['form'],'pro');}
+                    {if $basic}
+                    {if $index%2 ==0}
+                    <tr class="{$yu}">
+                        {/if}
+                        <th class="w150 textr">{$yu}{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</th>
+                        <td class="w600 textl noborder">{$v['form']}</td>
+                        {if $index%2==1}
+                    </tr>
+                    {/if}
+                    {php $index++}
+                    {/if}
+                    {/loop}
+
+                    <tr>
+                        <th></th>
+                        <td><input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </form>
+
+
+</div>
+{template 'member', 'footer'}

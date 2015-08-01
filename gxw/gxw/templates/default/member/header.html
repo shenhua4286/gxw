@@ -1,0 +1,112 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>长沙市工业信息化项目调度系统</title>
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+{if isset($show_validator)}
+	<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+{/if}
+</head>
+
+<div class="x-header">
+		<h1 class="z-title white">长沙市工业和信息化项目调度系统</h1>
+		<div class="login-nav">
+			<li><a href="index.php?m=member&c=index&a=account_manage_password">你好，({$memberinfo[nickname]})<!-- <img src="{CSS_PATH}/gxw/img/vv.png" alt="" / width="18px" style="vertical-align:-4px;padding-left:8px"> --></a><span>|</span></li>
+			<li><a href="{APP_PATH}index.php?m=member&c=index&a=logout">退出</a><span>|</span></li>
+			<li><a href="index.php?m=admin&c=index&a=login">管理登录</a></li>
+		</div>
+	</div>
+	<div class="x-nav">
+		
+		{if $memberinfo['groupid'] == 12}
+			<div class="qiye-name">{$memberinfo[nickname]}
+				<span>
+					<a href=""><img src="{CSS_PATH}/gxw/img/renzheng.png" alt="" /></a>
+				</span>
+			</div>
+		
+			{elseif $memberinfo['groupid'] == 11}
+				<div class="qiye-state" style="color:Red;">
+					贵公司资料填写不全,请认真填写资料，进行提交。
+				</div>
+			{else}
+				<div class="qiye-state" >
+					贵公司资料已经提交成功，请等待工作人员审核
+				</div>
+		{/if}
+		
+{pc:message action="check_new"}
+	{php $new_arr = $data;}
+{/pc}
+	<!-- <div class="h-nav">   
+			<li {if ROUTE_A == 'init'} class="nav-active" {/if}><a href="index.php?m=member"><span>首页</span></a></li>
+			<li {if ROUTE_A=="account_manage_info"}class="nav-active"{/if}><a href="index.php?m=member&c=index&a=account_manage_info&t=1"><span>企业信息</span></a></li>
+			<li {if $catid==9 } class="nav-active"{/if}><a href="index.php?m=member&c=content&a=published&catid=9"><span>项目信息</span></a></li>
+			<li {if $catid==10} class="nav-active"{/if}><a href="index.php?m=member&c=content&a=published&catid=10"><span>产品信息</span></a></li>
+			<li {if $catid==13} class="nav-active"{/if}><a href="index.php?m=member&c=content&a=published&catid=13"><span>项目进度管理</span></a></li>
+			<li {if $catid==14} class="nav-active"{/if}><a href="index.php?m=member&c=content&a=published&catid=14"><span>生产情况</span></a></li>
+					{php $news_count= $new_arr['new_count']+ $new_arr['new__countgroup'] }
+			<li {if ROUTE_M == 'message' || $catid  == 12 } class="nav-active"{/if}><a href="index.php?m=message&c=index&a=inbox"><span>消息{if $news_count >0}<font color=red>({$news_count})</font>{/if}</span></a></li>
+			<li {if ROUTE_A == 'group'} class="nav-active"{/if}><a href="index.php?m=message&c=index&a=group"><span>系统消息{if $new_arr['new_group_count'] >0}<font color=red>({$new_arr['new_group_count']})</font>{/if}</span></a></li>
+		</div>
+		  -->
+	{php $t=$_GET['t']; if(!isset($t)){$t=4;} $pt=isset($_GET['pt']) ? $_GET['pt'] :$t;} 
+	{php $siteinfo = siteinfo($this->memberinfo['siteid']);}
+	{php $this->menu_db = pc_base::load_model('member_menu_model');}
+	{php $menu = $this->menu_db->select(array('display'=>1, 'parentid'=>0), '*', 20 , 'listorder');}
+	{php $children_menu = $this->menu_db->select(array('display'=>1, 'parentid'=>$pt), '*', 20 , 'listorder');}
+	{php $ids=array();$ids[]=$pt;foreach($children_menu as $v){$ids[]=$v['id'];}}
+	
+	{php $nowMenu;}
+		<div class="h-nav">
+				{loop $menu $k $v}
+					<li {if in_array($v['id'],$ids)}class="nav-active" {/if}>
+						{if in_array($v['id'],$ids)}
+							{php $nowMenu=$v}
+						{/if}
+							<a href="index.php?m={$v['m']}&c={$v['c']}&a={$v['a']}&{$v['data']}&t={$v['id']}" ><span>{L($v['name'], '', 'member_menu')}</span></a>
+						</li>
+			    {/loop}
+		</div>
+	</div>
+		{php $nowChild;$curmb=isset($_GET['curmb']) ? $_GET['curmb']:0}
+		{loop $children_menu $v}
+			{if $v['id'] == $t}
+				{php $nowChild=$v}
+			{/if}
+		{/loop}
+
+
+	<script>
+		$(function(){
+			$("a").each(function(){
+				var href=$(this).attr("href");
+				if(href!=null && href != "" && href.indexOf('javascript') <0){
+					if(href.indexOf("t=")<0){
+						$(this).attr("href",href+"&t={$t}&pt={$pt}");
+					}
+				}
+			});
+		});
+	</script>
+	
+	<div class="crumbs">
+		<div class="shortcut cu-span"></div>
+		<span id="current_pos">
+			{if $nowMenu}
+			 <a href="index.php?m={$nowMenu['m']}&c={$nowMenu['c']}&a={$nowMenu['a']}&{$nowMenu['data']}&t={$nowMenu['id']}">{L($nowMenu['name'], '', 'member_menu')}</a> 
+			{/if}
+			{if $nowChild}
+				&gt; <a href="index.php?m={$nowChild['m']}&c={$nowChild['c']}&a={$nowChild['a']}&{$nowChild['data']}&t={$nowChild['id']}">{L($nowChild['name'], '', 'member_menu')}</a>
+			{/if}
+			{if $curmb}
+				&gt; {L($curmb, '', 'curmbs')}
+			{/if}
+		<span id="current_pos_attr"></span></span>
+</div>

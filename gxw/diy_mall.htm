@@ -1,0 +1,18 @@
+<!--{php $tags=tag("moduleid=16&condition=status>2 and elite=1 and username='$username'&pagesize=12&order=edittime desc&fields=itemid,title,linkurl,thumb,edittime,price,cxprice&template=null");}-->
+
+
+<div class="title">
+<div class="left"><span>知名产品</span></div>
+</div>
+<div class="goods">
+<div class="wboxB">
+
+	
+	{if $tags}
+		{template 'thumb-mall','tag'}
+		 {else}
+		 暂无信息
+ {/if}
+
+</div>
+</div>

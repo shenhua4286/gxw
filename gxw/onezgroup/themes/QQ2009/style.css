@@ -1,0 +1,661 @@
+/*
+  欢迎使用佳蓝开发的OnezGroup群聊系统
+  请登录http://www.onez.cn下载最新版本及插件
+  
+  我已经在每个标签处加了注释，如果有的标签不能理解，请联系上下文
+  
+  欢迎分享您设计的风格模板
+  
+  联系QQ:6200103  设计交流QQ群:11989954
+*/
+
+
+/*主要标签样式开始*/
+body {
+	font-size: 12px;
+	border:0;
+  word-break:break-all;
+  overflow:hidden;
+  margin:0 auto;
+  background:#fff;
+}
+html {
+  filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+table,td,p,div {
+	font-size: 12px;
+  word-break:break-all;
+}
+form{
+  margin: 0;
+  padding: 0;
+}
+ul{list-style:none}
+input{
+  border:1px solid #8898b1;
+  height:18px;
+  background-color:#FFFFFF;
+  color:#000000;
+  vertical-align:middle;
+  font: 11px Tahoma, Verdana;
+}
+/*主要标签样式结束*/
+
+
+/*子窗体背景*/
+.childbody{
+  background:#afd2ef;
+}
+
+/*------------------------------------------------------
+主窗体开始*/
+.OnezTable .tl{/*左上角*/
+  background:url(TL.gif) no-repeat left top;
+}
+.OnezTable .tc{/*顶部标题栏背景*/
+  background:url(TC.gif) repeat-x left top;
+}
+.OnezTable .caption{/*顶部标题栏字体*/
+  color:#ffffff;
+  font-size:12px;
+  font-weight:Bold;
+  cursor:move;
+  overflow:hidden;
+  padding-top:8px;
+}
+.OnezTable .tr{/*右上角*/
+  background:url(TR.gif) no-repeat left top;
+}
+.OnezTable a.min,.OnezTable a.min:hover{/*最小化按钮正常*/
+  display:inline-block;
+  background:url(min_normal.gif) no-repeat left top;
+}
+.OnezTable a.min:hover{/*最小化按钮鼠标移过*/
+  display:inline-block;
+  background:url(min_hover.gif) no-repeat left top;
+}
+.OnezTable a.max,.OnezTable a.max:hover{/*最大化按钮正常*/
+  display:inline-block;
+  background:url(max_normal.gif) no-repeat left top;
+}
+.OnezTable a.max:hover{/*最大化按钮鼠标移过*/
+  display:inline-block;
+  background:url(max_hover.gif) no-repeat left top;
+}
+.OnezTable a.close,.OnezTable a.close:hover{/*关闭按钮正常*/
+  display:inline-block;
+  background:url(close_hover.gif) no-repeat left top;
+}
+.OnezTable a.close:hover{/*关闭按钮鼠标移过*/
+  display:inline-block;
+  background:url(close_hover.gif) no-repeat left top;
+}
+.OnezTable .cl{/*左边框*/
+  background:url(CL.gif) repeat-y left top;
+}
+.OnezTable .cc{/*正中*/
+  background:#afd2ef url(CT.gif) repeat-x left top;
+}
+.OnezTable .cr{/*左边框*/
+  background:url(CR.gif) repeat-y left top;
+}
+.OnezTable .bl{/*左下角*/
+  background:url(BL.gif) no-repeat left top;
+}
+.OnezTable .bc{/*下边框*/
+  background:#afd2ef url(BC.gif) repeat-x left top;
+}
+.OnezTable .br{/*右下角*/
+  background:url(BR.gif) no-repeat left top;
+}
+/*主窗体结束
+--------------------------------------------------*/
+
+/*首页顶部链接样式开始*/
+.toplink a{
+  color:#ffffff;
+  font-weight:bold;
+  font-size:14px;
+  line-height:20px;
+}
+.toplink a:hover{
+  color:#ffea00;
+}
+/*首页顶部链接样式结束*/
+
+/*首页最小化区域开始*/
+#minwins{
+  position:absolute;
+  z-index:1;
+  left:0px;
+  bottom:0px;
+  border-top:1px solid #cccccc;
+  background:#ffffff;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+#minwins li{
+  float:left;
+  width:120px;
+  height:20px;
+  overflow:hidden;
+  line-height:20px;
+  padding-left:20px;
+  margin:3px;
+  background:url(ico.gif) no-repeat 2px 3px;
+}
+/*首页最小化区域结束*/
+
+.borderframe{/*所有窗口的顶层标签*/
+  width:100%;
+  height:100%;
+  border:0;
+  background-color:#e4f4ff;
+}
+
+/*顶部工具栏开始*/
+.toolbarbk{/*背景*/
+  text-align:left;
+  height:40px;
+  margin:0;padding:0 5px;
+  background:url(ListTop.gif) repeat-x;
+}
+.toolbarbk a{/*链接(默认)*/
+  display:inline-block;
+  width:39px;
+  height:39px;
+  margin:0 3px;
+}
+.toolbarbk a:hover{/*链接(鼠标移过)*/
+  background:url(menuHover.gif) no-repeat;
+}
+.toolbarbk img{/*图标*/
+  width:24px;
+  height:24px;
+  border:0;
+  margin:6px;
+}
+/*顶部工具栏结束*/
+
+.mainTable{/*顶部工具栏以下的主窗口*/
+  padding:0 3px;
+  width:100%;
+  height:32px;
+  border:0;
+  background:url(CT.gif) repeat-x left top;
+}
+#boxLeft{/*主窗口左侧区域*/
+  float:left;
+  position:absolute;
+  z-index:6200103;
+  left:3px;
+  top:40px;
+}
+#boxRight{/*主窗口右侧区域*/
+  position:absolute;
+  z-index:6200103;
+  right:3px;
+  top:40px;
+  width:200px;
+}
+
+.clear{clear:both}/*清除浮动*/
+
+/*聊天主区域开始*/
+#dtl{/*左上角*/
+  float:left;
+  width:5px;
+  height:20px;
+  background:url(DTL.gif) no-repeat left top;
+}
+#dtc{/*顶部中间*/
+  float:left;
+  height:20px;
+  background:url(DTC.gif) repeat-x left top;
+}
+#dtr{/*右上角*/
+  float:left;
+  width:5px;
+  height:20px;
+  background:url(DTR.gif) no-repeat right top;
+}
+#dbl{/*左边框*/
+  float:left;
+  width:5px;
+  height:5px;
+  background:url(DBL.gif) no-repeat left top;
+  position:relative;
+  top:-2px
+}
+#dbc{/*正中区域*/
+  float:left;
+  height:5px;
+  background:url(DBC.gif) repeat-x left top;
+  position:relative;
+  top:-2px
+}
+#dbr{/*右边框*/
+  float:left;
+  width:5px;
+  height:5px;
+  background:url(DBR.gif) no-repeat right top;
+  position:relative;
+  top:-2px
+}
+#showbox{/*内容显示区域*/
+  border-left:1px solid #5fa7dc;
+  border-right:1px solid #5fa7dc;
+  background:#ffffff;
+	scrollbar-face-color: #F6F6f6;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #F0F2DB;
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-arrow-color:  #666666;
+	scrollbar-track-color: #FCFDF9;
+	scrollbar-darkshadow-color: #cccccc; 
+	overflow:auto;
+	margin-top:-3px;
+}
+#showbox div{
+  margin:3px;
+}
+.im_to{/*“我”的名字和时间*/
+  color:#008040;
+  height:18px;
+  line-height:18px;
+}
+.im_from{/*对方的名字和时间*/
+  color:#0000ff;
+  height:18px;
+  line-height:18px;
+}
+.im_content{/*消息内容*/
+  color:#000000;
+  padding-left:10px;
+}
+.im_info{/*系统提示*/
+  color:#7982c1;
+  line-height:18px;
+  padding-left:2px;
+}
+.im_file{/*发送文件*/
+  height:20px;
+  line-height:20px;
+  padding-left:20px;
+  background:url(file.gif) no-repeat 0 0;
+}
+.url{/*消息内的链接*/
+  color:#0000ff;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.view{/*查看帖子(新窗口)*/
+  padding:10px;
+}
+#inputbox{/*输入框*/
+	scrollbar-face-color: #F6F6f6;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #F0F2DB;
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-arrow-color:  #666666;
+	scrollbar-track-color: #FCFDF9;
+	scrollbar-darkshadow-color: #cccccc; 
+  height:75px;
+  border:0;
+  border-left:1px solid #5fa7dc;
+  border-right:1px solid #5fa7dc;
+  background:#ffffff;
+  overflow:hidden;
+  position:relative;
+  top:-1px
+}
+#toolbox{/*工具条背景 (子项为Flash，暂不可以修改样式)*/
+  padding:2px 0 0 2px;
+  height:22px;
+  border-left:1px solid #5fa7dc;
+  border-right:1px solid #5fa7dc;
+  background:url(toolbarBk.gif) repeat-x;
+}
+#btnbox{/*下面按钮区域*/
+  height:41px!important;
+  height:35px;
+  text-align:right;
+  margin-top:0px!important;
+  margin-top:-8px;
+}
+#btnbox div{/*聊天按钮*/
+  float:right;
+  height:21px;
+  margin-left:5px;
+  margin-right:0px;
+}
+#alertBox{/*聊天内容区域顶部文字提示*/
+  color:#1b1d74;
+  padding-left:18px;
+  height:18px;
+  line-height:18px;
+  overflow:hidden;
+  margin-left:5px;
+  margin-top:2px!important;
+  margin-top:5px;
+  background:url(ico_alert.gif) no-repeat;
+}
+/*聊天主区域结束*/
+
+
+/*右侧信息区域开始*/
+#boxRight .t{/*顶部边框*/
+  width:200px;
+  height:2px;
+  overflow:hidden;
+  background:url(infoBorder.gif) no-repeat;
+}
+#boxRight .b{/*底部边框*/
+  width:200px;
+  height:2px;
+  overflow:hidden;
+  background:url(infoBorder.gif) no-repeat 0 -2px;
+}
+.infobtn{/*标题栏按钮*/
+  border-left:1px solid #8ab0de;
+  border-right:1px solid #8ab0de;
+  background:#ffffff;
+  padding:0 1px;
+}
+.infobtn a{/*标题栏链接样式(默认)*/
+  display:block;
+  height:20px;
+  line-height:20px;
+  cursor:default;
+  overflow:hidden;
+  text-decoration:none;
+  color:#000000;
+  padding-left:5px;
+  background:url(infobtn.gif) no-repeat 0 -40px;
+}
+.infobtn a:hover{/*标题栏链接样式(鼠标移过)*/
+  background:url(infobtn.gif) no-repeat;
+}
+.infobtn a.sel:hover{/*标题栏链接样式(选中后鼠标移过)*/
+  background:url(infobtn.gif) no-repeat 0 -20px;
+}
+.lineA{/*两个区域间的分隔线*/
+  height:4px;
+  overflow:hidden;
+}
+ul.infobox{/*内容显示区(如公告、用户列表，UL标签)*/
+  margin:0;padding:0;
+}
+.infobox{/*同上*/
+  border-left:1px solid #8ab0de;
+  border-right:1px solid #8ab0de;
+  background:#ffffff;
+  padding:0 1px;
+  height:166px;
+  overflow:auto;
+}
+.infobox div{/*公告区的第一个标签*/
+  padding:5px;
+}
+
+/*用户列表开始*/
+#infoboxB li{/*LI标签*/
+  height:20px;
+  line-height:20px;
+  margin:1px 2px;
+  overflow:hidden;
+}
+#infoboxB li span{/*包括：组、头像、用户名三个span标签*/
+  display:block;
+  float:left;
+}
+#infoboxB li.sel{/*选中后的LI标签*/
+  background:url(usrBg.gif) no-repeat;
+}
+#infoboxB li span.group_28,#infoboxB li span.group_2,#infoboxB li span.group_1,#infoboxB li span.group_0,#infoboxB li span.group_o{/*组标签*/
+  width:20px;
+  height:20px;
+  text-align:center;
+  background-repeat:no-repeat;
+  background-position:center 2px;
+}
+#infoboxB li span.group_28{/*超级管理组*/
+  background-image:url(group_28.gif);
+}
+#infoboxB li span.group_2{/*普通管理组*/
+  background-image:url(group_1.gif);
+}
+#infoboxB li span.group_1{/*用户组*/
+}
+#infoboxB li span.group_0{/*访客组*/
+}
+#infoboxB li span.face{/*头像标签*/
+  width:20px;
+  height:20px;
+  text-align:center;
+}
+#infoboxB li span.face img{/*头像标签内的IMG标签*/
+  width:18px;
+  height:18px;
+  margin:1px;
+}
+#infoboxB li span.name{/*用户名标签*/
+  height:21px;
+  cursor:default;
+}
+#infoboxB li.sel span.name{/*选中后的用户名标签*/
+  color:#ffffff;
+}
+#infoboxB li span.man{/*男性标签*/
+  color:green;
+}
+#infoboxB li span.woman{/*女性标签*/
+  color:red;
+}
+#infoboxB li span.self{/*自己标签*/
+  color:blue;
+}
+/*用户列表结束*/
+/*右侧信息区域结束*/
+
+
+#smiley_box{/*表情主标签*/
+  position:absolute;
+  z-index:999999999;
+  top:-999999px;
+  display:none;
+}
+
+/*按钮样式开始*/
+.btn_normal{/*正常*/
+  width:69px;
+  height:21px;
+  line-height:21px;
+  text-align:center;
+  cursor:default;
+  margin:0 2px;
+  background:url(btn.gif) no-repeat 0 0px;
+}
+.btn_hover{/*鼠标移过*/
+  width:69px;
+  height:21px;
+  line-height:21px;
+  text-align:center;
+  cursor:default;
+  margin:0 2px;
+  background:url(btn.gif) no-repeat 0 -21px;
+}
+.btn_down{/*按下*/
+  width:69px;
+  height:21px;
+  line-height:21px;
+  text-align:center;
+  cursor:default;
+  margin:0 2px;
+  background:url(btn.gif) no-repeat 0 -42px;
+}
+/*按钮样式结束*/
+
+#FaceA,#FaceB{/*私聊头像边框*/
+  width:128px;
+  height:128px;
+  position:absolute;
+  z-index:6200103;
+  right:10px;
+  top:40px;
+  background:url(FaceBg.png) no-repeat!important;
+  background:none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="themes/QQ2009/FaceBg.png");
+}
+#FaceA img,#FaceB img{/*头像IMG标签*/
+  width:94px;
+  height:94px;
+  margin:11px 0 0 16px;
+}
+#FaceB{/*我的头像*/
+  top:auto;
+  bottom:-5px;
+}
+#HotKey{/*消息快捷键*/
+  position:absolute;
+  z-index:6200103;
+  left:3px;
+  bottom:0px;
+  cursor:pointer;
+}
+
+/*登录样式开始*/
+.loginBg{
+  height:127px;
+  background:#e4f4ff url(loginbg.gif) no-repeat 36px 34px;
+}
+.loginBg input{
+  margin-left:10px;
+  border:0;
+  line-height:16px;
+  background:transparent;
+}
+/*登录样式结束*/
+
+.bottomBtn{/*底部按钮区域*/
+  position:absolute;
+  z-index:6200103;
+  left:3px;
+  bottom:0px;
+  text-align:right;
+  background-color:#afd2ef;
+}
+.bottomBtn div{/*底部按钮区域内的DIV*/
+  float:right;
+}
+
+/*悬浮框开始*/
+.Float{
+  position:absolute;
+  z-index:6200103;
+  right:23px;
+  display:none;
+  top:0px;
+  text-align:left;
+  width:240px;
+  height:140px;
+  background:#eff8fe;
+  border:1px solid #89d6ff;
+}
+.Float div{
+  overflow:hidden;
+}
+.Float .face{
+  position:absolute;
+  z-index:6200103;
+  left:5px;
+  top:5px;
+  width:60px;
+  height:60px;
+  border:1px solid #54a5d5;
+}
+.Float .name{
+  position:absolute;
+  z-index:6200103;
+  left:72px;
+  top:5px;
+  width:160px;
+  height:25px;
+  color:#1670eb;
+}
+.Float .txt{
+  position:absolute;
+  z-index:6200103;
+  left:72px;
+  top:30px;
+  width:160px;
+  height:60px;
+  color:#808080;
+}
+.Float .masterbtns{
+  position:absolute;
+  z-index:6200103;
+  left:0px;
+  bottom:0px;
+  width:228px;
+  height:25px;
+  padding:0 5px;
+  line-height:25px;
+  background:#bde7fe;
+  margin:1px;
+}
+.Float .masterbtns a{
+  color:#0000ff;
+  text-decoration:none;
+}
+.Float .masterbtns a:hover{
+  color:#ff0000;
+  text-decoration:underline;
+}
+/*悬浮框结束*/
+
+/*好友开始*/
+#friendbody{
+  background:#ffffff;
+  height:20px;
+  line-height:20px;
+}
+.friendlist{
+}
+.friendlist img{
+  width:16px;
+  height:16px;
+}
+.friendlist th{
+  height:20px;
+  font-weight:normal;
+  text-align:left;
+  padding-left:3px;
+  background:url(friendTh.gif);
+}
+.friendlist td{
+  padding-left:3px;
+  height:20px;
+  line-height:20px;
+  overflow:hidden;
+  color:gray;
+}
+.friendlist td.a{
+  background:#fbfbff;
+}
+.friendlist td.b{
+  background:#f3f8fb;
+}
+.friendlist td.online{
+  color:green;
+}
+#friendbody .bottomBtn{
+  bottom:-15px;
+  text-align:center;
+}
+#friendbody .bottomBtn a{
+  color:#001c30;
+  text-decoration:none;
+}
+/*好友结束*/

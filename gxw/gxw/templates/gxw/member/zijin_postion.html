@@ -1,0 +1,97 @@
+<body>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<title>星通科技 - 后台管理中心</title>
+<link href="http://localhost/gxw/statics/css/reset.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/gxw/statics/css/zh-cn-system.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/gxw/statics/css/table_form.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/gxw/statics/css/style/zh-cn-styles1.css" title="styles1" media="screen">
+	<link rel="alternate stylesheet" type="text/css" href="http://localhost/gxw/statics/css/style/zh-cn-styles2.css" title="styles2" media="screen">
+	<link rel="alternate stylesheet" type="text/css" href="http://localhost/gxw/statics/css/style/zh-cn-styles3.css" title="styles3" media="screen">
+    <link rel="alternate stylesheet" type="text/css" href="http://localhost/gxw/statics/css/style/zh-cn-styles4.css" title="styles4" media="screen">
+<script language="javascript" type="text/javascript" src="http://localhost/gxw/statics/js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="http://localhost/gxw/statics/js/admin_common.js"></script>
+<script language="javascript" type="text/javascript" src="http://localhost/gxw/statics/js/styleswitch.js"></script>
+<script language="javascript" type="text/javascript" src="http://localhost/gxw/statics/js/formvalidator.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="http://localhost/gxw/statics/js/formvalidatorregex.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	window.focus();
+	var pc_hash = '2OCA4G';
+	
+		window.onload = function(){
+		var html_a = document.getElementsByTagName('a');
+		var num = html_a.length;
+		for(var i=0;i<num;i++) {
+			var href = html_a[i].href;
+			//过滤掉电商推荐里  电商名称链接
+			var id = html_a[i].id;
+			if(id=="link_address"){
+				continue;
+			}
+			if(href && href.indexOf('javascript:') == -1) {
+				if(href.indexOf('?') != -1) {
+					html_a[i].href = href+'&pc_hash='+pc_hash;
+				} else {
+					html_a[i].href = href+'?pc_hash='+pc_hash;
+				}
+			}
+			
+		}
+
+		var html_form = document.forms;
+		var num = html_form.length;
+		for(var i=0;i<num;i++) {
+			var newNode = document.createElement("input");
+			newNode.name = 'pc_hash';
+			newNode.type = 'hidden';
+			newNode.value = pc_hash;
+			html_form[i].appendChild(newNode);
+		}
+	}
+</script>
+
+
+<style type="text/css">
+	html{_overflow-y:scroll}
+</style>  <script type="text/javascript">
+<!--
+	$(document).ready(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+			})
+//-->
+</script>
+<div class="pad-10">
+<div class="col-tab">
+<ul class="tabBut cu-li">
+<li class="on"><a href="?m=member&c=index&a=zijin_postion&catid=9&modelid=14&pc_hash=2OCA4G">推送到资金推荐</a></li>
+<!-- <li><a href="http://localhost/gxw/index.php?m=content&amp;c=push&amp;a=init&amp;module=special&amp;action=_push_special&amp;order=2&amp;modelid=14&amp;catid=9&amp;id=3018&amp;pc_hash=2OCA4G">推送到专题</a></li>
+<li><a href="http://localhost/gxw/index.php?m=content&amp;c=push&amp;a=init&amp;module=content&amp;classname=push_api&amp;action=category_list&amp;order=3&amp;tpl=push_to_category&amp;modelid=14&amp;catid=9&amp;id=3018&amp;pc_hash=2OCA4G">推送到其他栏目</a></li>
+ --></ul>
+<div class="content" style="height:auto;">
+<form action="?m=member&c=index&a=zijin_postion&catid=9&modelid=14&pc_hash=2OCA4G" method="post" name="myform" id="myform">
+<input type="hidden" name="modelid" value="{$modelid}">
+<input type="hidden" name="catid" value="{$catid}">
+<table width="100%" class="table_form">
+  
+    	  <tbody><tr>
+    <th width="80">推荐位：</th>
+    <td class="y-bg">
+    {loop $data $k $v}
+    <label class="ib">
+    <input type="checkbox" name="posid[]" id="_{$k}" value="{$v['modelid']}"> {$v['name']}</label>
+	{/loop}
+  </tr>
+  {loop $arr $v}
+  <input type="hidden" name="ids[]" value="{$v}" />
+  {/loop}
+    </tbody></table>
+<div class="bk15"></div>
+
+<input type="hidden" name="return" value="">
+<input type="submit" class="dialog" id="dosubmit" name="dosubmit" value="提交">
+<input name="pc_hash" type="hidden" value="2OCA4G"></form>
+</div>
+</div>
+</div>
+
+</body>

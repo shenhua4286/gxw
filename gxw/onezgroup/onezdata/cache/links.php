@@ -1,0 +1,3 @@
+<?php
+  $links=false;
+  ?>

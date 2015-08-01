@@ -1,0 +1,44 @@
+<style>
+	.left-menu{
+		float:left;
+		width:18%;
+		border:1px solid #efefef;
+		height:100%;
+		min-height:600px;
+		margin:0px 20px 0 0
+	}
+	.left-menu  > .title{
+		height:30px;
+		line-height:30px;
+		font-size:18px;
+		background:#efefef;
+		color:#fff;
+	}
+	.left-menu ul{
+		margin:0px 0px 0px 10px;
+	}
+</style>
+
+<div class="left-menu"  >
+	<div class="title">菜单</div>
+<ul class="left-menu-ul">
+		
+		{loop $children_menu $v}
+			<li {if $v['id'] == $t } class="nav-active"{/if}><a href="index.php?m={$v['m']}&c={$v['c']}&a={$v['a']}&{$v['data']}&t={$v['id']}&pt={$pt}" ><span>{L($v['name'], '', 'member_menu')}</span></a></li>
+		{/loop}
+		
+		<script>
+			$(function(){
+				var active=$(".left-menu-ul").find(".nav-active");
+				if(active.length==0){
+					$(".left-menu-ul").find("li").eq(0).addClass("nav-active");
+				}
+			})
+		</script>
+		
+		<!-- <li {if ROUTE_A == 'outbox' } class="nav-active"{/if}><a href="index.php?m=message&c=index&a=outbox"><span>发件箱</span></a></li>
+		<li {if ROUTE_A == 'group'} class="nav-active"{/if}><a href="index.php?m=message&c=index&a=group"><span>系统消息{if $new_arr['new_group_count'] >0}<font color=red>({$new_arr['new_group_count']})</font>{/if}</span></a></li>
+		<li {if $catid == '12'} class="nav-active"{/if}><a href="index.php?m=member&c=content&a=published&catid=12"><span>行业信息</span></a></li>
+		 -->
+</ul>
+</div>

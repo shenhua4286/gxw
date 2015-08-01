@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>长沙工业信息化调度系统</title>
+<link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{CSS_PATH}/gxw2/css/ics.css" />
+<script type="text/javascript" src="{CSS_PATH}/gxw2/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{CSS_PATH}/gxw2/js/jquery.tmpl.min.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<style>
+	.nav-active{
+			color:#02A1D0 !important;
+			font-weight:700;
+		}
+	.w-cont-act{
+		background: #fff;
+		border:1px solid #efefef;
+	}
+	.w-cont-act .frame{
+		border-left: 1px solid #eaeaea;
+	}
+
+</style>
+	<div class="i-header">
+		<div class="w1200">
+			<div class="logo i-fl">
+				<img class="logotu" src="{CSS_PATH}/gxw2/img/logo.png" alt="" / width="65px">
+				<div class="logoinfo i-fl w300">
+					<h1 class="hehe">全 球 视 野 / 工 业 之 都</h1>
+					<h1 class="">长沙工业和信息化项目管理系统</h1>
+				</div>
+			</div>
+			<div style="float:right;  margin-top: 46px;font-size: 12px;margin-left: 12px;">
+					<li><a href="index.php?m=member&c=index&a=account_manage_password">你好，({$memberinfo[nickname]})<!-- <img src="{CSS_PATH}/gxw/img/vv.png" alt="" / width="18px" style="vertical-align:-4px;padding-left:8px"> --></a><span>|</span></li>
+					<li><a href="{APP_PATH}index.php?m=member&c=index&a=logout">退出</a><span>|</span></li>
+					<!-- <li><a href="index.php?m=admin&c=index&a=login">管理登录</a></li> -->
+			</div>
+			<div class="right-info">	
+	<!-- 			<h5><a href="">关于我们</a>  |  <a href="">帮助</a></h5> -->
+				<div class="tq ifr">
+					<img src="{CSS_PATH}/gxw2/img/tq.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	{php $t=$_GET['t']; if(!isset($t)){$t=4;} $pt=isset($_GET['pt']) ? $_GET['pt'] :$t;} 
+	{php $siteinfo = siteinfo($this->memberinfo['siteid']);}
+	{php $this->menu_db = pc_base::load_model('member_menu_model');}
+	{php $menu = $this->menu_db->select(array('display'=>1, 'parentid'=>0), '*', 8 , 'listorder');}
+	
+	{php $nowMenu;}
+	<div class="navbar">	
+		<ul class="w1200 relative">
+			  	 {loop $menu $k $v}
+					{if $v['isurl']}
+						{php $href=$v['url']}
+						{else}
+						{php $href="index.php?m=".$v['m']."&c=".$v['c']."&a=".$v['a']."&".$v['data']."&t=".$v['id'];}
+					{/if}
+					
+					<a  onclick="loadMenu({$v['id']});menu({$v['id']});" 
+						target="main" {if $k==0} class="nav-active" {/if} 
+						href="{$href}" >
+						{L($v['name'], '', 'member_menu')}
+					</a>
+					<span>|</span>
+			  {/loop}
+			<div class="help">
+				<img src="{CSS_PATH}/gxw2/img/arrowup.png" alt="" class="arrowup">
+				<div class="shut">
+					×
+				</div>
+				<div class="nextb">
+					了解了
+				</div>
+				<div class="tips">
+					<img src="{CSS_PATH}/gxw2/img/tb.png" width="25px" alt="">
+					<span>点击此按钮即可进入数据填报,填写您的企业信息</span>
+				</div>
+			</div>
+			<!-- <a href="">数据填报</a>
+			<span>|</span>
+			<a href="">展示中心</a>
+			<span>|</span>
+			<a href="">互动平台</a>
+			<span>|</span>
+			<a href="">服务大厅</a>
+			<span>|</span>
+			<a href="">专属地带</a>
+			<span>|</span>
+			<a href="">资金申报</a>
+			<span>|</span>
+			<a href="">层级管理</a>  -->
+		</ul>
+	</div>
+	<script>
+		/* $(function(){
+			$("a").each(function(){
+				var href=$(this).attr("href");
+				if(href!=null && href != "" && href.indexOf('javascript') <0){
+					if(href.indexOf("t=")<0){
+						$(this).attr("href",href+"&t={$t}&pt={$pt}");
+					}
+				}
+			});
+		});*/
+	</script>
+<div class="bigbg">
+		
+	</div>
+
+
+<div class="w-container" style="width:1200px;height:100%;margin:0 auto;margin-top:12px;">
+	<div class="left" style="display:none;">
+		{template 'member','left'}
+	</div>	
+	
+	<iframe class="frame"  allowtransparency="true"  name="main" id="main" scroll="no" onload='IFrameLoad(this)'
+			frameborder="no" style="width:100%;height:100%;  " src="index.php?m=member&c=index&a=main">
+	</iframe>
+</div>
+    
+<script>
+	var IFrameLoad = function (obj) {
+			$(obj).css('height',0);
+            var height = obj.contentWindow.document.body.scrollHeight;
+            var width = $(obj).contents().find("body").outerWidth(true);
+            $(obj).css('height',height);
+        }
+
+	$(".w-container").css("width","100%");
+	$(".navbar a").click(function(){
+			$(".nav-active").removeClass("nav-active");
+			$(this).addClass("nav-active");
+	});
+	
+
+	$(".navbar a").click(function(){
+			$(".nav-active").removeClass("nav-active");
+			$(this).addClass("nav-active");
+	});
+	
+	function menu(id){
+		if(id == 4 || id ==51 || id == 50 || id ==24){
+			hideMenu();
+		}else{
+			showMenu();
+		}
+	}
+	
+	
+	function showMenu(){
+		$(".left").show();
+		$(".frame").css("width","900px");
+		$('.bigbg').hide();
+		$('.w-container').addClass('w-cont-act')
+		$(".w-container").css("width","1200px");
+	}
+	function hideMenu(){
+		$(".frame").css("width","100%");
+		$(".w-container").css("width","100%");
+		$(".left").hide();
+		$('.bigbg').show();
+		$('.w-container').removeClass('w-cont-act');
+		// iFrameHeight();
+	}
+		function loadMenu(id){
+			var url="index.php?m=member&c=index&a=loadMenu&parentid="+id;
+			$.getJSON(url,function(data){
+				
+				if(data.length!=0){
+					var html=creatrMenu(data);
+					//var menu=$("#menu-tmpl").tmpl(data);
+					$(".left-menu").html(html);
+					setTimeout("menuSuccess()",1000);
+				}
+			});
+		}
+		function menuSuccess(){
+			var li=$(".menu-div").find("li");
+			if(li.length==0){
+				$(".menu-div").eq(0).find("h5").eq(0).addClass("menu-active");
+			}else{
+				$(".menu-div").eq(0).find("li").eq(0).addClass("menu-active");
+			}
+			$(".menu-div a").on('click',function(){
+				$(".menu-active").removeClass("menu-active");
+				$(this).parent().addClass("menu-active");
+				
+			});
+		}
+		$('.nextb,.shut').click(function(){
+			$(this).parent().hide();
+		})
+	
+		function creatrMenu(data){
+				var html=new Array();
+				for(var i=0;i<data.length;i++){
+					html.push("<div class='menu-div'>");
+					html.push("<h5><img  src='<?php echo CSS_PATH;?>/gxw2/img/tianbao.png' />");
+					html.push(createA(data[i]));
+					html.push("</h5>");
+					var childMenu=data[i].child;
+						if(childMenu != null && childMenu.length!=0){
+							html.push("<ul class='left-menu-ul'>");
+								for(var j=0;j<childMenu.length;j++){
+										html.push("<li>");
+										html.push(createA(childMenu[j]));
+										html.push("</li>");
+								}
+							html.push("</ul>");
+						}
+					html.push("</div>");
+				}
+				
+				return html.join("");
+		}
+	function createA(data){
+			var href="";
+			if(data.isurl==1){
+				href=data.url;
+			}else{
+				href="index.php?menu=1&m="+data.m+"&c="+data.c+"&a="+data.a+"&"+data.data+"&t="+data.id;
+			}
+			var menu="<a href="+href+" target=main> <span>"+data.menuName+"</span></a>";
+			return menu;
+	}
+	
+</script>
+
+{template 'member', 'footer'}

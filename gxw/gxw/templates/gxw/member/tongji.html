@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}zh-cn-system.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript" type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+</head>
+<body>
+<style>
+.highcharts-button {
+	display: none;
+}
+
+svg>text {
+	display: none;
+}
+
+.highcharts-title {
+	display: block;
+	color: gray
+}
+</style>
+
+<style>
+
+
+.col-2 td {
+	padding-top: 10px;
+	padding-left: 20px;
+}
+</style>
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: '入驻企业类型占比',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: -50
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: 40,
+                    style: {
+                        color: 'gray',
+                    }
+                },
+                startAngle: -90,
+                endAngle: 270,
+                center: ['50%', '75%']
+            }
+        },
+        {php $color = array ('#e199dd','#ff9193','#ffdd52','#7ee189','#72e9cb','#7297d1');}
+        series: [{
+            type: 'pie',
+            name: '企业信息产业',
+            innerSize: '85%',
+            data: [
+				{loop $member_count $k  $v}
+					{php echo "{name:'".$v['name']."',color:'".$color[$k]."',y:".$v['num']."},";}
+				{/loop}
+            ]
+        }]
+    });
+});
+</script>
+<script src="{JS_PATH}highcharts/highcharts.js"></script>
+<div class="col-2 lf mr10" style="width: 48%">
+	<h6>统计数据</h6>
+	<table>
+		<tr>
+			<td>{$member_ruzhu}家企业注册入驻本系统</td>
+		</tr>
+		<tr>
+			<td>{$member_shim}家企业通过了实名认证</td>
+		</tr>
+		<tr>
+			<td>累积已申报项目{$project_num}个</td>
+		</tr>
+		<tr>
+			<td>通过审核项目{$project_tg}个</td>
+		</tr>
+		<tr>
+			<td>产业园一共{$cyy_num}个</td>
+		</tr>
+
+	</table>
+</div>
+<div class="col-2 col-auto" style="clear:both;width:48%;margin-top:10px;">
+	<h6>管理状态</h6>
+	<table>
+		<tr>
+			<td>
+				{$member_check}
+				 家企业等待审核</td>
+		</tr>
+		<tr>
+			<td>
+				{php $num = $project_num-$project_tg-$project_submit;echo $num;}
+		 个申报项目正在审核</td>
+		</tr>
+		<tr>
+			<td>已添加录入{$products_num}个产品</td>
+		</tr>
+	</table>
+</div>
+
+<div class="col-2 col-auto" style="width:48%;clear:both;margin-top:10px;">
+	<div id="container"
+		style="min-width: 50px; height: 180px; max-width: 800px; margin: 0 auto">
+	</div>
+</div>
+</body>
+</html>

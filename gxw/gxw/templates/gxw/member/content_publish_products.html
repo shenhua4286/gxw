@@ -1,0 +1,125 @@
+{template 'member', 'header'} 
+{php $isShow=$_GET['isShow'];}
+<script type="text/javascript">
+                <!--
+                var charset = '{CHARSET}';
+                var uploadurl = '{php echo pc_base::load_config('system','upload_url')}';
+                //-->
+            </script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<script type="text/javascript">
+<!--
+
+//-->
+$(function(){
+	
+	$('th:contains("上")').each(function(){
+		var s = this.innerHTML;
+		s = s.replace("上","{date('n',strtotime('-1 month'))}");
+		this.innerHTML = s;
+	});
+
+
+});
+</script>
+<style>
+	.main_page{
+		width:1200px;
+		margin:0 auto;
+
+	}
+	.frame-name{
+		font-size: 16px;
+		font-weight: 400;
+		color: #222;
+		padding-bottom: 23px;
+		margin-top: -10px;
+	}
+</style>
+<div class="main_page">
+	<div class="x-content">
+		<form method="post" action="" id="myform" name="myform">
+			<div class="main-info">
+				{if $catid==15}
+				<div class="blue-tool"><a href="index.php?m=member&c=content&a=published&catid={$catid}" class="blue-bt red-bt xfr">我的提问记录</a></div>
+				{/if}
+				{if $catid==17}
+				<div class="blue-tool"><a href="index.php?m=member&c=content&a=published&catid={$catid}" class="blue-bt red-bt xfr">我的反馈记录</a></div>
+				{/if}
+				{if $catid==19}
+				<div class="blue-tool"><a href="index.php?m=member&c=content&a=published&catid={$catid}" class="blue-bt red-bt xfr">我的申请记录</a></div>
+				{/if}				
+				<h3 class="frame-name"></h3>
+				<div class="table-widget padding10">
+					<table>
+						<input type="hidden" name="info[catid]" value="{$catid}" />
+						<!--{php print_r($forminfos[pro_type])}-->
+                        <input type="hidden" name="info[yearMonth]" id="yearMonth" value="{date('Y-m-d',SYS_TIME)}" size="10" class="date" readonly="">
+                         <!--  <tr>
+                          	<th class="w150 textr">所属月份：</th>
+                              <td class="w600 textl noborder">{date('Y年m月',SYS_TIME)}</td>
+                          </tr> -->
+							
+							{loop $forminfos $k $v} 
+									{if $v['name']!='栏目'}
+									<tr>
+										<th class="w150 textr">{if $v['star']} <font color="red">*</font>{/if}
+											{$v['name']}：
+										</th>
+										<td class="w600 textl noborder">{$v['form']}
+										{if $v['tips']}<font color="green">({$v['tips']})</font>{/if}</td>
+									</tr>
+									{/if} 
+							{/loop} 
+						{if !$isShow}
+						<tr>
+							<th></th>
+							<td>
+								<input type="hidden" name="info[catid]" value="{$catid}" />
+								<input name="forward" type="hidden" value="{HTTP_REFERER}"> 
+								<input name="id" type="hidden" value="{$id}"> 
+								<input type="hidden"  name="t" value="{$t}"/>
+								<input type="hidden"  name="pt" value="{$pt}"/>
+								<input type="hidden"  name="menu" value="{php echo $_GET['menu']}"/>
+								<input name="dosubmit" type="submit" id="dosubmit" value="保存" class="button red-bt">
+							</td>
+						
+						</tr>
+						{/if}
+					  </table>				 
+				</div>
+			</div>
+		 </form>
+
+	</div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+			var isSubmit=false;
+            $(function() {
+                $.formValidator.initConfig({
+                    formid: "myform",
+                    autotip: true,
+                    onerror: function(msg,obj){
+                    	alert(msg);
+                    },onsuccess:function(){
+                    	if(!isSubmit){
+                    		isSubmit=true;
+                    		return true;
+                    	}else{
+                    		//console.log("重复提交");
+                    	}
+                    	return false;
+                    }
+                });
+                {$formValidator}
+            });
+            </script>
+{if $isShow}
+<script src="{JS_PATH}inputFormart.js"></script>
+{/if} 
+

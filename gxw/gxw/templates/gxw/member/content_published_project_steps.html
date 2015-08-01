@@ -1,0 +1,149 @@
+{template 'member', 'header'}
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script>
+    function submit(id){
+    	var groupid="{$memberinfo['groupid']}";
+    	if (groupid < 11){
+    		alert("请先等待资料审核通过/或提交资料进行审核")
+    		return ;
+    	}
+    	var url="index.php?m=member&c=content&a=submit&id="+id
+    	$.get(url,'',function(data){
+    		if(data.success){
+    			alert('操作成功');
+    			location.reload();
+    		}else{
+    			alert(data.msg);
+    		}
+    	},'json');
+    	
+    }
+    
+    function confirm_delete(id){
+    	 if(confirm('确认删除吗？')) $('#myform').submit();
+    }
+	 	/**添加进度**/
+	function add_progress(id, name,date) {
+	 	var winid='add_progress';
+		window.top.art.dialog({id:winid}).close();
+		window.top.art.dialog({title:name,id:'edit',iframe:'index.php?m=member&c=content&a=publish&catid=13&projectId='+id+"&proDate="+date,width:'700',height:'500'}, function(){var d = window.top.art.dialog({id:winid}).data.iframe;d.document.getElementById('dosubmit').click();return false;}, function(){window.top.art.dialog({id:winid}).close()});
+    }
+    
+</script>
+	
+	<div class="x-content">
+		<div class="main-info">
+            
+            <form name="myform" id="myform" method="post">
+				<div style="height: 30px; width: 100%; margin: 5px 0; line-height: 30px;">
+	                <div style="float: left; display: inline-block; height: 30px; line-height: 30px;">
+	                    {menu_linkage(3360,'L_3360',$memberinfo['area'])}
+	                </div>
+	                项目状态：
+						<select name="steps">
+							<option value="1" {if $steps==1}selected{/if}>{L('project1','','mydiy')}</option>
+							<option value="99" {if $steps==99}selected{/if}>{L('project99','','mydiy')}</option>
+							<option value="0" {if $steps==0}selected{/if}>{L('project0','','mydiy')}</option>
+							<option value="-2" {if $steps==-2}selected{/if}>{L('project-2','','mydiy')}</option>
+						</select>
+	                项目名称：
+					<input type="text" name="title" value="{$title}" />              
+	                <input type="submit" name="search" value="查找" id="searchbtn">
+	            </div>
+			</form>
+			
+			<form name="check_form" id="check_form" method="post" onsubmit="return checkid('ids[]')"
+				  action="index.php?m=member&c=index&a=pass&catid={$catid}&isShow=1&type={$type}&steps={$steps}">
+				<div class="table-widget">
+					<table  cellspacing="0" cellpadding="0" class="textc">
+						<tr>
+							<th class="w50">
+								<input type="checkbox" value="{$info[id]}" id="check_box" onclick="selectAll('ids[]');" />
+							</th>
+							<th class="">申报企业</th>
+							<th class="">项目名称</th>
+							<th class="">申报时间</th>
+							<th class="w80">项目状态</th>
+							<th class="w60">操作</th>
+						</tr>
+					 	{php $index=0;}
+						{loop $datas $info}
+						{php $index++;}
+						<tr>
+							<td align="center" >
+								<input type="checkbox" name="ids[]" value="{$info['id']}" />
+							</td>
+							<td align="left">
+								{$info['complayName']}
+							</td>
+							<td align="left" class="pdl10">
+								<a href="index.php?m=member&c=content&a=edit&catid={$catid}&isShow=1&id={$info[id]}&type={$type}&steps={$steps}"  title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+							</td>
+							<td align="center">{date('Y-m-d H:m:s',$info['inputtime'])}</td>
+							<td>
+								{L('project'.$info[status],'','mydiy')}
+							</td>
+							<td align="center" >
+										<a  href="index.php?m=member&c=content&a=edit&catid={$catid}&isShow=1&id={$info[id]}&type={$type}&steps={$steps}">
+										审核
+										</a>
+							</td>
+						</tr>
+						{/loop}
+					</table>
+	 				<div id="pages"> {$pages}</div>
+	 				<div> <input type="submit" value="通过审核" onclick="return check('1')"/> 
+	 					  <input type="submit" value="驳回"  onclick="return check('-1')"/> 
+	 			 	</div>
+				</div>
+				<input type="hidden" value="{$type}" name="type"/>
+				<input type="hidden" value="{$steps}" name="steps"/>
+				<input type="hidden" value="{$t}" name="t"/>ss
+				<input type="hidden" value="{$pt}" name="pt"/>
+				<input type="hidden" value="{$status}" name="status"/>
+			</form>
+			{if isProgress}
+				</div>
+			{/if}
+		</div>
+	</div>
+
+
+<script>
+	function selectAll(name){
+		var check=$("[name='"+name+"']");
+		$(check).each(function(){
+			this.checked=true;
+		});		
+	}
+
+	function check(value){
+		var input='<input type="text" name="steps" value="'+value+'"/>';
+		$("#check_form").append(input);
+		return true;
+	}
+
+	
+	
+	function checkid(name) {
+		var ids='';
+		$("input[name='"+name+"']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+		if(ids=='') {
+			alert('请选择信息');
+			return false;
+		}
+		/*else if($("#groupid").val() == 11){
+			var reject_c=$("#reject_c")[0];
+			if(reject_c.value== reject_c.defaultValue || $(reject_c).val()==""){
+				alert("请输入驳回意见");
+				return false;
+			}
+		} */
+		check_form.submit();
+	}
+	
+	
+</script>

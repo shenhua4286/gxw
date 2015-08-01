@@ -1,0 +1,141 @@
+{template 'member', 'header'}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="JavaScript">
+<!--
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#nickname").formValidator({onshow:"{L('input').L('nickname')}",onfocus:"{L('nickname').L('between_2_to_40')}"}).inputValidator({min:4,max:40,onerror:"{L('nickname').L('between_2_to_40')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checknickname_ajax&userid={$memberinfo[userid]}",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "{L('already_exist')}",
+		onwait : "{L('connecting_please_wait')}"
+	}).defaultPassed();
+
+	
+    
+        $.formValidator.initConfig({
+            formid: "myform",
+            autotip: true,
+            onerror: function(msg,obj){
+            	alert(msg);
+            }
+        });
+        {$formValidator}
+});
+
+//-->
+
+</script>
+<style>
+.noborder input{
+	height: 30px;
+/*	border:1px solid #999;*/
+}
+				.edit_warp{
+					margin:0px 0px 0px 0px;
+					float:left;
+					cursor:pointer;
+/*					display: block;
+					width:105px;*/
+				}
+				.view-info{
+					border-bottom:3px solid #ccc;	
+				}
+				.edit_warp > .on{
+					border-bottom:3px solid #02A1D0;	
+				}
+</style>
+
+
+{php $type=isset($_GET['type']) ? $_GET['type']:'basic';}
+<div class="x-content">
+<div class="form-tips">
+	通过编辑和发布自定义菜单来进行便携管理，如具备开发能力，可更灵活地使用该功能。
+</div>
+<form method="post" action="" id="myform" name="myform">
+		
+
+		<div class="main-info">
+			{if $memberinfo['groupid'] == 12}
+    			<script src="{JS_PATH}inputFormart.js"></script>
+    		 <div class="checkInfo" style="text-align:center;">您的企业信息已经审核通过了，不能再次修改.</div>
+			{/if}
+			
+			
+			
+			<div style="float: left; width: 70%;">
+			</div>
+			
+			<div class="info">
+				<div class="edit">
+				    <div class="edit_warp">
+						<div class="view-info">
+						{if $nowMenu}
+							{L($nowMenu['name'], '', 'member_menu')}
+						{/if}
+						</div>
+					</div>
+				</div>
+
+				<div class="table-widget padding10">
+					<table cellspacing="0" cellpadding="0"
+						align="center">
+						
+						{if $type=='basic'}
+						<input type="hidden" name="groupid" value="10"/>
+						<tr>
+							<th class="w150 textr">登录名</th>
+							<td class="w350 textl noborder">
+								{$memberinfo['username']}
+							</td>
+						</tr>
+							<tr>
+								<th class="w150 textr">单位名称</th>
+								<td class="w350 textl noborder">
+									<input id="nickname" name="nickname"
+										value="{$memberinfo['nickname']}" type="text"
+										class="input-text" size="80">
+								</td>
+						</tr>
+						{/if}
+					{php $index=0;}
+					{loop $forminfos $k $v}
+					{php $basic=strpos($v['form'],$type);}
+					  {if $basic}
+								<tr>
+									<th class="w150 textr">{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：</th> 
+									<td class="w350 textl noborder">{$v['form']}
+										{if $v['tips']}({$v['tips']}){/if}
+									</td>
+								</tr>
+							{php $index++}
+					  {/if}
+					{/loop}
+						<tr>
+							<td colspan="2" align="center">
+								<input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button">
+							</td>
+						</tr>
+				</table>
+			</div>
+		</div>
+		
+		</div>
+</form>
+ 	
+</div>
+{template 'member', 'footer'}

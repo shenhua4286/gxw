@@ -1,0 +1,44 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info">
+		
+			<div class="blue-tool">
+				<a href="index.php?m=member&c=content&a=publish&catid={$catid}&curmb=add&menu=1&t={$t}&pt={$pt}" class="blue-bt red-bt xfr">+添加大事件</a>
+			</div>
+
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w150">所属月份</th>
+						<th class="w300">事件标题</th>
+						<th class="w150">发布时间</th>
+						<th class="w150">操作</th>
+					</tr>
+
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="center" class="pdl10">
+							{$index}
+						</td>
+						<td>{date('Y年m月份',strtotime($info['yearMonth']))}</td> 
+						<td align="left" class="pdl10">
+							<a href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&isShow=1&id={$info[id]}&t={$t}&pt={$pt}&menu=1"  title="{$info['title']}">{str_cut($info['title'], 60)}</a>
+						</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+						<td align="center">
+							<a title="编辑" href="index.php?m=member&c=content&a=edit&catid={$info[catid]}&id={$info[id]}&t={$t}&pt={$pt}&menu=1"><font class="edit-bt" color="red">&nbsp;&nbsp;</font></a>
+						</td>
+					</tr>
+					{/loop}
+					
+				</table>
+			
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+	</div>
+
+

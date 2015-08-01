@@ -1,0 +1,42 @@
+{template 'member', 'header'}
+	<div class="x-content">
+		<div class="main-info">
+			{template 'message','left'}
+		
+			<div style="  float: left; width: 70%;">
+			<div class="edit">
+				<div class="view-info">行业信息</div>
+			</div>
+
+			<div class="table-widget">
+				<table  cellspacing="0" cellpadding="0" class="textc">
+					<tr>
+						<th class="w50">序号</th>
+						<th class="w300">信息名称</th>
+						<th class="w150">发布时间</th>
+					</tr>
+
+				
+					{php $index=0;}
+					{loop $datas $info}
+					{php $index++;}
+					<tr>
+						<td align="left" class="pdl10">
+							{$index}
+						</td>
+						<td align="left" class="pdl10">
+							<a href="{$info[url]}&curmbs=view"  title="{$info['title']}">{str_cut($info['title'], 100)}</a>
+						</td>
+						<td align="center">{date('Y-m-d',$info['inputtime'])}</td>
+					</tr>
+					{/loop}
+					
+				</table>
+ 				<div id="pages"> {$pages}</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+{template 'member', 'footer'}

@@ -1,0 +1,341 @@
+
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>gxwV9 - {L('member','','member').L('manage_center')}</title>
+    <script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+    <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="{JS_PATH}dialog.js"></script>
+
+    <link href="{CSS_PATH}dialog_simp.css" rel="stylesheet" type="text/css" />
+    <link href="{CSS_PATH}/gxw/css/base.css" rel="stylesheet" type="text/css" />
+    <style>
+        .onError,.onCorrect,.onFocus,.onShow{
+            width: 170px;
+            display: inline;
+            margin-left: 10px;
+            font-size: 14px;;
+        }
+
+
+        .input-focus{
+            height: 18px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 200px;
+            margin-left: -5px;
+        }
+
+        .input{
+            margin:12px 0;
+        }
+        .input-text{
+            width: 200px;
+            height: 18px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin-left: -5px;
+        }
+        .form{
+            display: inline-block;
+        }
+        label{
+
+            display: inline-block;
+            width: 130px;
+            text-align: right;
+            line-height: 26px;
+        }
+        .reg-widget{
+            width: 600px;
+            padding: 38px 10px 10px 69px ;
+        }
+        .login-input{
+            width: 100%;
+        }
+        .next-bt{
+            margin-left: 180px;
+        }
+        .tijiao-bt{
+            width: 150px;
+            margin-left: 20px;
+        }
+
+        .back_pre{
+            background: #55acef;
+            color: #fff;
+            font-size: 16px;
+            line-height: 36px;
+            box-shadow: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 130px;
+        }
+        #protocol{
+            margin-left: 135px;
+        }
+        .add{
+            margin-left: -5px;
+        }
+
+
+    </style>
+    <script language="JavaScript">
+        <!--
+        $(function ($member_setting){
+
+            /*上一步调用*/
+
+            $(".reg-liucheng >div").eq(0).click(function(){
+                $(".reg-liucheng >div").removeClass("step-active");
+                $(".reg-liucheng >div").eq(0).addClass("step-active");
+                $(".reg-widget").eq(1).css({"display":"none"});
+                $(".reg-widget").eq(0).css({"display":"block"});
+            });
+            $(".back_pre").click(function(){
+                $(".reg-liucheng >div").removeClass("step-active");
+                $(".reg-liucheng >div").eq(0).addClass("step-active");
+                $(".reg-widget").eq(1).css({"display":"none"});
+                $(".reg-widget").eq(0).css({"display":"block"});
+            });
+
+
+            /*初始化*/
+            $(".reg-widget").eq(1).css({"display":"block"});
+            $(".reg-widget").eq(2).css({"display":"none"});
+
+            /*下一步*/
+            $(".next-bt").click(function(){
+                if($("#basic_mobile").val()!=""){
+                    $("#phonespan").addClass("onCorrect");
+                }
+                if($(".onCorrect").length==5 ){
+
+                    $(".reg-liucheng div:first").removeClass("step-active");
+                    $(".reg-liucheng >div").eq(1).addClass("step-active");
+                    $(".reg-widget").eq(0).css({"display":"none"});
+                    $(".reg-widget").eq(1).css({"display":"block"});
+                }
+
+            });
+
+            /*检查第二页是否全部填写数据*/
+
+            $("#tijiao_btn").click(function(){
+                var sumtemp="";
+
+                $(".reg-widget").eq(1).find("input").each(function () {
+                    if($(this).val()==""){
+                        sumtemp= sumtemp+$(this).parent().parent().find("label").text() +" ";
+                        
+                        $(this).addClass("checkerror");
+                    }else{
+                        $(this).removeClass("checkerror");
+                    }
+                });
+
+                if($(".checkerror").length>0){
+
+                alert("请上传"+sumtemp+"再提交");
+
+                    return false;
+
+                }else{
+                    return true;
+                }
+
+            });
+
+
+
+
+
+
+            $.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+            $("#mobile").formValidator({onshow:"请输入手机号码",onfocus:"请输入手机号码"}).inputValidator({min:1,onerror:"请输入手机号码"});
+
+            $("#username").formValidator({onshow:"{L('input').L('username')}",onfocus:"{L('username').L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('username').L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('username').L('format_incorrect')}"}).ajaxValidator({
+                type : "get",
+                url : "",
+                data :"m=member&c=index&a=public_checkname_ajax",
+                datatype : "html",
+                async:'false',
+                success : function(data){
+                    if( data == "1" ) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                buttons: $("#dosubmit"),
+                onerror : "{L('deny_register').L('or').L('user_already_exist')}",
+                onwait : "{L('connecting_please_wait')}"
+            });
+            $("#password").formValidator({onshow:"{L('input').L('password')}",onfocus:"{L('password').L('between_6_to_20')}"}).inputValidator({min:6,max:20,onerror:"{L('password').L('between_6_to_20')}"});
+            $("#pwdconfirm").formValidator({onshow:"{L('input').L('cofirmpwd')}",onfocus:"{L('passwords_not_match')}",oncorrect:"{L('passwords_match')}"}).compareValidator({desid:"password",operateor:"=",onerror:"{L('passwords_not_match')}"});
+            $("#email").formValidator({onshow:"{L('input').L('email')}",onfocus:"{L('email').L('format_incorrect')}",oncorrect:"{L('email').L('format_right')}"}).inputValidator({min:2,max:32,onerror:"{L('email').L('between_2_to_32')}"}).regexValidator({regexp:"email",datatype:"enum",onerror:"{L('email').L('format_incorrect')}"}).ajaxValidator({
+                type : "get",
+                url : "",
+                data :"m=member&c=index&a=public_checkemail_ajax",
+                datatype : "html",
+                async:'false',
+                success : function(data){
+                    if( data == "1" ) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                buttons: $("#dosubmit"),
+                onerror : "{L('deny_register').L('or').L('email_already_exist')}",
+                onwait : "{L('connecting_please_wait')}"
+            });
+
+
+            $(":checkbox[name='protocol']").formValidator({tipid:"protocoltip",onshow:"{L('read_protocol')}",onfocus:"{L('read_protocol')}"}).inputValidator({min:1,onerror:"{L('read_protocol')}"});
+
+
+            {$formValidator}
+
+            {if !isset($_GET['modelid']) && !isset($_GET['t']) && !empty($member_setting['showregprotocol'])}
+                show_protocol();
+                {/if}
+                });
+
+                function show_protocol() {
+                    art.dialog({lock:false,title:'{L('register_protocol')}',id:'protocoliframe', iframe:'?m=member&c=index&a=register&protocol=1',width:'500',height:'310',yesText:'{L('agree')}'}, function(){
+                        $("#protocol").attr("checked",true);
+                    });
+                }
+
+        //-->
+
+
+
+    </script>
+
+</head>
+
+
+
+<body>
+<div class="x-header">
+    <h1 class="z-title white">长沙市工业和信息化项目调度系统</h1>
+    <div class="login-nav">
+        <li><a href="{APP_PATH}">首页</a><span>|</span></li>
+        <li><a href="#">注册</a><span>|</span></li>
+        <li><a href="{APP_PATH}index.php?m=member&c=index&a=login">登录</a><span>|</span></li>
+        <li><a href="">提意见</a><span>|</span></li>
+        <li><a href="">帮助</a></li>
+    </div>
+</div>
+
+<div id="content">
+
+
+    <div class="x-content">
+        <div class="reg-liucheng">
+            <div class="step step-active">
+                <div class="step-quan ">1</div>
+                <p>创建账号</p>
+            </div>
+            <span class="step-line"></span>
+            <div class="step">
+                <div class="step-quan">2</div>
+                <p>完善企业信息</p>
+            </div>
+            <span class="step-line"></span>
+            <div class="step">
+                <div class="step-quan"> ✔</div>
+                <p>注册成功</p>
+            </div>
+        </div>
+
+        {if !isset($_GET['t'])}
+
+        <form method="post" action="" id="myform">
+           
+            <div id="form1" class="reg-widget" style="display:block">
+
+                <input type="hidden" name="siteid" value="{$siteid}" />
+
+
+                <div class="login-input"><label>{L('username')}：</label>
+                <input type="text" id="username" name="username" size="36" class="h38 w200">
+
+                </div>
+                <div class="login-input"><label>{L('password')}：</label>
+                <input type="password" id="password" name="password" size="36" class="h38 w200"></div>
+                <div class="login-input"><label>{L('cofirmpwd')}：</label>
+                <input type="password" name="pwdconfirm" id="pwdconfirm" size="36" class="h38 w200"></div>
+                <div class="login-input"><label>{L('email')}：</label>
+                <input type="text" id="email" name="email" size="36" class="h38 w200"></div>
+                    {php $v=$forminfos['basic_mobile']}
+                <div class="input">
+                    <label>{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</label>
+                    <div class="form">{$v['form']}</div>
+                    <span id="phonespan"></span>
+
+
+                </div>
+
+
+
+
+                <div class="login-input"><input type="submit" value="下一步" class="next-bt"/></div>
+            </div>
+
+
+            <div class="reg-widget" style="display:block">
+                <script type="text/javascript" src="statics/js/swfupload/swf2ckeditor.js"></script>
+                {php $v=$forminfos['zhiz']}
+                <div class="input"><label>{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</label><div class="form">{$v['form']}</div></div>
+                {php $v=$forminfos['zuzz']}
+                <div class="input"><label>{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</label><div class="form">{$v['form']}</div></div>
+                {php $v=$forminfos['suiw']}
+                <div class="input"><label>{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</label><div class="form">{$v['form']}</div></div>
+
+
+
+
+
+                {if $member_setting['enablcodecheck']=='1' && $sms_setting['sms_enable']!='1'}
+            <div class="input"><label>{L('checkcode')}：</label><input type="text" id="code" name="code" size="10" class="input-text">{form::checkcode('code_img', '5', '14', 120, 26)}</div>
+            {/if}
+
+
+            <div class="reg">
+
+                <div class="submit"> <input type="button" value="上一步" class="back_pre "><input type="submit" name="dosubmit" value="提交" class="tijiao-bt" id="tijiao_btn"></div><br />
+                <input type="checkbox" name="protocol" id="protocol" value="protocol"><a href="javascript:void(0);" onclick="show_protocol();return false;" class="blue">{L('click_read_protocol')}</a>
+            </div>
+    </div>
+
+        </form>
+
+        {/if}
+    </div><!--第二步-->
+
+    <div class="reg-widget" style="display:block">
+        <div class="tijiao-succ">
+            <h4>信息提交成功！</h4>
+            <p>我们将在三个工作日内完成帐号认证申请的审核，请留意注册时填写的邮箱和注意接听注册时填写的电话通知。</p>
+            <a href="" class="qiye-home">企业主页</a>
+        </div>
+    </div>
+
+
+    <div class="x-footer">
+        <div class="footer-info">长沙市工业和信息化项目调度系统</div>
+        <div class="footer-info">长沙经济和信息化委员会</div>
+    </div>
+
+
+</body>
+</html>

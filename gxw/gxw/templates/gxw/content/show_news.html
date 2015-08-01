@@ -1,0 +1,79 @@
+  	<style>
+  	.times{
+  		margin-bottom:10px;
+  	}
+  	#btnPrint{
+  		margin-top:18px;
+  	}
+  	a{
+  		color:#333;
+  	}
+  	.tz-neirong{
+  		padding-top: 40px;
+  		border-left: 1px solid #ccc;
+  		padding-left: 20px;
+  	}
+  	</style>
+  	<link rel="stylesheet" href="{CSS_PATH}/gxw2/css/ics.css" />
+	<div class="x-content">
+	{if !isset($_GET['t'])} 
+	<!--startprint1-->
+		<div class="main-info" style="width:900px;">
+		
+		
+		<div class="left-tongzhi">
+             <div class="laba-tongzhi">
+                <img src="{CSS_PATH}gxw2/img/dalaba.png" alt="">
+                <div class="tongzhi-title">
+                    通知公告
+                </div>
+                <div class="tongzhi-title-en">
+                    notice
+                </div>
+            </div>
+            {php $index=0}
+                {loop subcat(12) $v}
+                     <a href="{$v[url]}" class="tongzhi-li  {if $catid==$v['catid']}on{/if}">
+                         {$v[catname]}
+                    </a>
+                    {php $index++;}
+                {/loop}
+        </div>
+        {/if}
+        
+		<div class="crumbs tz-neirong">
+		        <div class="shortcut cu-span">
+		    </div>
+			<div class="tool-bar" style="font-size:20px;font-weight:700;text-align:center;color:#333;margin-bottom:10px;">
+				{$title}
+			</div>
+          
+			<div class="table-widget wenz" style="width:900px;" id="dy">
+			<div class="times">{$inputtime}</div>
+			{$content}
+			<input id="btnPrint" type="button" value="打印" onclick="javascript:preview(1);" />  
+			</div>
+			
+		</div>
+		<!--endprint1-->
+	</div>
+	</div>
+	
+	<script>  
+	function preview(oper)         
+	{  
+	if (oper < 10)  
+	{  
+	bdhtml=window.document.body.innerHTML;//获取当前页的html代码  
+	sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域  
+	eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域  
+	prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html  
+	prnhtmlprnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html  
+	window.document.body.innerHTML=prnhtml;  
+	window.print();  
+	window.document.body.innerHTML=bdhtml;  
+	} else {  
+	window.print();  
+	}  
+	}  
+	</script>  
